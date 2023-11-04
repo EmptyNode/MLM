@@ -1,0 +1,87 @@
+body {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+background-color: rgb (247, 246, 252);
+font-family: 'Josefin Sans', sans-serif;
+}
+
+.material-symbols-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 30px;
+}
+
+.material-icons-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 30px;
+}
+
+.background-blue{
+    background-color: rgb(29, 39, 154);
+}
+
+.text-red{
+    background-color: rgb(213, 0, 0);
+}
+
+.background-red{
+    background-color: rgb(213, 0, 0);
+}
+
+.text-green{
+    background-color: rgb(46, 125, 40);
+}
+
+.background-green{
+    background-color: rgb(46, 125, 40);
+}
+
+.text-orange{
+    background-color: rgb(255, 115, 0);
+}
+
+.background-orange{
+    background-color: rgb(255, 115, 0);
+}
+
+.grid-container {
+display: grid;
+grid-template-columns: 260px 1fr 1fr 1fr;
+grid-template-rows: 0.2fr 3fr;
+grid-template-areas: 
+"sidebar header header header"
+"sidebar main main main";
+height: 100vh;
+}
+
+.header {
+    grid-area: header;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-icon {
+    display: none;
+}
+
+#sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    background-color: rgb(29, 38, 154);
+    color: rgb(225, 225, 225);
+    overflow-y: auto;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.main-container{
+    grid-area: main;
+    overflow-y: auto;
+    padding: 20px 20px;
+}
