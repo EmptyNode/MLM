@@ -85,7 +85,7 @@ if (isset($_POST['update_profile'])) {
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 
-            $verifyimgtargetPath = 'MLM/AnkanDa/uinclude/userUploads/verificationImg/' . $uniqueFileName;
+            $verifyimgtargetPath = '/AnkanDa/uinclude/userUploads/verificationImg/' . $uniqueFileName;
 
 
             $bankimageFileType = strtolower(pathinfo($_FILES['bank_image']['name'], PATHINFO_EXTENSION));
