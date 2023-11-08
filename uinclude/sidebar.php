@@ -7,6 +7,31 @@ $query_run = mysqli_query($conn, $query);
 if (mysqli_num_rows($query_run) > 0) {
     $result = mysqli_fetch_assoc($query_run);
 }
+
+
+if (isset($_SESSION['uId'])) {
+    $user_id = $_SESSION['uId'];
+
+    $query = "SELECT approval_status, profile_img FROM user_tbl WHERE uId = ?";
+    $stmt = mysqli_prepare($conn, $query);
+
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $user_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $approvalStatus, $profileImg);
+
+        if (mysqli_stmt_fetch($stmt)) {
+            $divClass = ($approvalStatus == 1) ? 'border border-success' : 'border border-danger';
+        } else {
+            // Handle the case where the user is not found or an error occurred
+        }
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
+    } else {
+        // Handle the case where the statement couldn't be prepared
+    }
+}
 ?>
 
 
@@ -100,9 +125,12 @@ if (mysqli_num_rows($query_run) > 0) {
 
 
                     <!-- userImage -->
-                    <div class="user">
-                        <img src="<?php echo $result['profile_img']; ?>" alt="">
+                    <div class="user <?php echo $divClass; ?> border border-success">
+                        <img src="<?php echo $result['profile_img']; ?>" alt="" class="rounded border-10 p-10">
                     </div>
+
+
+
 
                 </div>
 
