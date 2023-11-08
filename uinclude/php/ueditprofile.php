@@ -85,7 +85,7 @@ if (isset($_POST['update_profile'])) {
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 
-            $verifyimgtargetPath = '/AnkanDa/uinclude/userUploads/verificationImg/' . $uniqueFileName;
+            $verifyimgtargetPath = '/uinclude/userUploads/verificationImg/' . $uniqueFileName;
 
 
             $bankimageFileType = strtolower(pathinfo($_FILES['bank_image']['name'], PATHINFO_EXTENSION));
@@ -102,7 +102,7 @@ if (isset($_POST['update_profile'])) {
                 $originalFileName = $_FILES['bank_image']['name'];
                 $uniqueFileName = generateUniqueFileName($originalFileName);
 
-                $targetPath = "../userUploads/bankImg/" . $uniqueFileName; // Set the target path            
+                $targetPath = "uinclude/bankImg/" . $uniqueFileName; // Set the target path            
 
                 if ($bankimageFileType === "jpeg" || $bankimageFileType === "jpg") {
                     $source = imagecreatefromjpeg($image);
@@ -112,7 +112,7 @@ if (isset($_POST['update_profile'])) {
                     imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
                 }
 
-                $bankimgtargetPath = '/AnkanDa/uinclude/userUploads/bankImg/' . $uniqueFileName;
+                $bankimgtargetPath = $uniqueFileName;
 
 
                 $profileimageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
@@ -148,7 +148,7 @@ if (isset($_POST['update_profile'])) {
                         imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
                     }
 
-                    $profileimagetargetPath = '/AnkanDa/uinclude/userUploads/profileImg/' . $uniqueFileName;
+                    $profileimagetargetPath = '/uinclude/userUploads/profileImg/' . $uniqueFileName;
 
 
                     // Update data into the table with Image
@@ -228,7 +228,7 @@ if (isset($_POST['update_profile'])) {
             $originalFileName = $_FILES['verify_image']['name'];
             $uniqueFileName = generateUniqueFileName($originalFileName);
 
-            $targetPath = "../userUploads/verificationImg/" . $uniqueFileName; // Set the target path            
+            $targetPath = "/MLM/uinclude/userUploads/verificationImg/" . $uniqueFileName; // Set the target path            
 
             if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
                 $source = imagecreatefromjpeg($image);
@@ -238,7 +238,8 @@ if (isset($_POST['update_profile'])) {
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 
-            $verifyimgtargetPath = '/AnkanDa/uinclude/userUploads/verificationImg/' . $uniqueFileName;
+            $verifyimgtargetPath = '/MLM/uinclude/userUploads/verificationImg/' . $uniqueFileName;
+            // $verifyimgtargetPath = $targetPath;
 
 
             $bankimageFileType = strtolower(pathinfo($_FILES['bank_image']['name'], PATHINFO_EXTENSION));
@@ -265,7 +266,8 @@ if (isset($_POST['update_profile'])) {
                     imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
                 }
 
-                $bankimgtargetPath = '/AnkanDa/uinclude/userUploads/bankImg/' . $uniqueFileName;
+                $bankimgtargetPath = '../userUploads/bankImg/' . $uniqueFileName;
+
 
                 // Update data into the table with Image
                 $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
@@ -349,7 +351,7 @@ if (isset($_POST['update_profile'])) {
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 
-            $verifyimgtargetPath = '/AnkanDa/uinclude/userUploads/verificationImg/' . $uniqueFileName;
+            $verifyimgtargetPath = '/uinclude/userUploads/verificationImg/' . $uniqueFileName;
 
             // Update data into the table with Image
             $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
@@ -418,7 +420,7 @@ if (isset($_POST['update_profile'])) {
             $originalFileName = $_FILES['bank_image']['name'];
             $uniqueFileName = generateUniqueFileName($originalFileName);
 
-            $targetPath = "../userUploads/bankImg/" . $uniqueFileName; // Set the target path            
+            $targetPath = "uinclude/userUploads/bankImg/" . $uniqueFileName; // Set the target path            
 
             if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
                 $source = imagecreatefromjpeg($image);
@@ -428,7 +430,7 @@ if (isset($_POST['update_profile'])) {
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 
-            $bankimgtargetPath = '/AnkanDa/uinclude/userUploads/bankImg/' . $uniqueFileName;
+            $bankimgtargetPath = '/uinclude/userUploads/bankImg/' . $uniqueFileName;
 
             // Update data into the table with Image
             $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
@@ -516,7 +518,7 @@ if (isset($_POST['update_profile'])) {
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 
-            $imagetargetPath = '/AnkanDa/uinclude/userUploads/profileImg/' . $uniqueFileName;
+            $imagetargetPath = '/uinclude/userUploads/profileImg/' . $uniqueFileName;
 
 
             // Update data into the table with Image
