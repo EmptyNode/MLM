@@ -22,7 +22,6 @@ if (isset($_POST['saveService'])) {
     $user_id = $_SESSION['uId'];
 
 
-    // Check if the image file was uploaded without errors
     if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
         $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
 
@@ -68,10 +67,8 @@ if (isset($_POST['saveService'])) {
                 exit;
             }
 
-            // Insert new data into the table along with user_id using prepared statement
             $sql = "INSERT INTO service_master (service, location, addr, pin, mobile, whatsapp, email, img, user_id) VALUES 
                 (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            // ('$service', '$location', '$addr', '$pincode', '$mobile', '$whatsapp', '$email', '$user_id')";
             if (!$conn) {
                 die("Connection failed: " . mysqli_connect_error());
             } else {
@@ -80,15 +77,7 @@ if (isset($_POST['saveService'])) {
 
             if ($stmt) {
                 $stmt->bind_param("ssssssssi", $service, $location, $addr, $pincode, $mobile, $whatsapp, $email, $imagetargetPath, $user_id);
-                // $stmt->bind_param("ssssssssi", $service, $location, $addr, $pincode, $mobile, $whatsapp, $email, $user_id);
-                // $stmt->bind_param(':service', $service);
-                // $stmt->bind_param(':location', $location);
-                // $stmt->bind_param(':addr', $addr);
-                // $stmt->bind_param(':pincode', $pincode);
-                // $stmt->bind_param(':mobile', $mobile);
-                // $stmt->bind_param(':whatsapp', $whatsapp);
-                // $stmt->bind_param(':email', $email);
-                // $stmt->bind_param(':user_id', $user_id, PDO::PARAM_INT);
+                
 
                 if ($stmt->execute()) {
                     $_SESSION['status'] = "Service added successfully";
@@ -112,13 +101,6 @@ if (isset($_POST['saveService'])) {
 }
 
 
-// function generateUniqueFileName($originalFileName, $index = '') {
-//     // $timestamp = time();
-//     $datetime = date('Y-m-d H:i:s');
-//     $randomString = substr(md5(mt_rand()), 0, 5);
-//     // return '_' . $datetime . $randomString . $index . $originalFileName;
-//     return '_' . $datetime . $randomString . $index;
-// }
 
 
 function generateUniqueFileName($originalFileName, $index = '')

@@ -21,7 +21,7 @@ if (isset($_SESSION['uId'])) {
         mysqli_stmt_bind_result($stmt, $approvalStatus, $profileImg);
 
         if (mysqli_stmt_fetch($stmt)) {
-            $divClass = ($approvalStatus == 1) ? 'border border-success' : 'border border-danger';
+            $profilepic = ($approvalStatus == 1) ? 'green' : 'red';
         } else {
             // Handle the case where the user is not found or an error occurred
         }
@@ -125,9 +125,7 @@ if (isset($_SESSION['uId'])) {
 
 
                     <!-- userImage -->
-                    <div class="user <?php echo $divClass; ?> border border-success">
-                        <img src="<?php echo $result['profile_img']; ?>" alt="" class="rounded border-10 p-10">
-                    </div>
+                    <div class="user" style="background-color: <?php echo $profilepic?>; border-radius: 50%;"></div>
 
 
 
@@ -135,5 +133,7 @@ if (isset($_SESSION['uId'])) {
                 </div>
 
 
-                <!-- </div>
-    </div> -->
+            <!-- </div>
+        </div>
+    </div>
+</body> -->

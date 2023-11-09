@@ -93,63 +93,69 @@ include('../uinclude/sidebar.php');
    </div>
    <!-- Modal for updating a service -->
    <div class="modal fade" id="updateServiceModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-   aria-hidden="true">
+      aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
          <div class="modal-content">
             <div class="modal-header">
-               <h1 class="modal-title fs-5 text-lg" id="exampleModalLabel">Update Service</h1>
+               <h1 class="modal-title fs-5 text-lg" id="exampleModalLabel">Add Service</h1>
                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
             <form action="php/updateservice.php" method="POST" enctype="multipart/form-data">
+               <input type="hidden" id="update_sm_id" name="update_sm_id" value="" />
+
                <div class="modal-body">
                   <div class="form-group row">
                      <div class="col-md-6">
-                        <input type="hidden" id="updateServiceId" name="updateServiceId" value="">
-                        <select id="updateService" class="form-select mb-3" placeholder="Service" name="service" required>
-                        </select>
+                        <select id="updateservice" class="form-select mb-3" placeholder="Service" name="service"
+                           required></select>
+
                      </div>
                      <div class="col-md-6">
-                        <input type="text" id="updateLocation" class="form-control mb-3" placeholder="Location"
+                        <input type="text" id="location" class="form-control mb-3" placeholder="Location"
                            name="location" required>
                      </div>
                      <div class="col-md-6">
-                        <input type="text" id="updateAddr" class="form-control mb-3" placeholder="Address" name="addr" required>
+                        <input type="text" id="addr" class="form-control mb-3" placeholder="Address" name="addr"
+                           required>
                      </div>
                      <div class="col-md-6">
-                        <input type="text" id="updatePincode" class="form-control mb-3" placeholder="Pincode" name="pincode" required>
+                        <input type="text" id="pincode" class="form-control mb-3" placeholder="Pincode" name="pincode"
+                           required>
                      </div>
                      <div class="col-md-6">
-                        <input type="text" id="updateMobile" class="form-control mb-3" placeholder="Mobile" name="mobile"
+                        <input type="text" id="mobile" class="form-control mb-3" placeholder="Mobile" name="mobile"
                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
                            maxlength="10" pattern="[0-9]{10}" title="Please enter 10 Digit Mobile Number only" required>
                      </div>
                      <div class="col-md-6">
-                        <input type="text" id="updateWhatsapp" class="form-control mb-3" placeholder="Whats App" name="whatsapp"
+                        <input type="text" id="whatsapp" class="form-control mb-3" placeholder="Whats App"
+                           name="whatsapp"
                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
                            maxlength="10" pattern="[0-9]{10}" title="Please enter 10 Digit Mobile Number only" required>
                      </div>
                      <div class="col-md-6">
-                        <input type="email" id="updateEmail" class="form-control mb-3" placeholder="E-mail" name="email" required>
+                        <input type="email" id="email" class="form-control mb-3" placeholder="E-mail" name="email"
+                           required>
                      </div>
+
                      <div class="col-md-6">
-                        <input type="file" id="updateImg" class="form-control mb-3" name="image" title="Image Size Max 5 MB"
+                        <input type="file" id="img" class="form-control mb-3" name="image" title="Image Size Max 5 MB"
                            accept="image/*">
                      </div>
-                     <div class="invalid-feedback" id="updateImageFeedback">
+                     <div class="invalid-feedback" id="imageFeedback">
                         Please select a valid image (JPG, JPEG, PNG) with a maximum size of 5MB.
                      </div>
                   </div>
                </div>
                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" id="updateButton" name="updateService">Update</button>
+                  <button type="submit" class="btn btn-primary" id="registerButton" name="updateService">Save</button>
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                </div>
             </form>
          </div>
       </div>
    </div>
-
 </div>
 
 
@@ -159,12 +165,12 @@ include('../uinclude/sidebar.php');
    <!-- <div class="row"> -->
    <!-- <div class="col-md-12"> -->
    <?php
-    if (isset($_SESSION['status'])) {
-        echo "<h4>" . $_SESSION['status'] . "</h4>";
-        unset($_SESSION['status']);
-    }
+   if (isset($_SESSION['status'])) {
+      echo "<h4>" . $_SESSION['status'] . "</h4>";
+      unset($_SESSION['status']);
+   }
 
-    ?>
+   ?>
 
    <div class="card ">
       <div class="card-header">
@@ -194,71 +200,68 @@ include('../uinclude/sidebar.php');
          </thead>
          <tbody>
             <?PHP
-                // require_once '../uinclude/php/db_conn.php';
-                
-                $user_id = $_SESSION['uId'];
-                // echo "id : " . $user_id;
-                $query = "SELECT * FROM service_master WHERE user_id = '$user_id'";
-                $query_run = mysqli_query($conn, $query);
-                if (mysqli_num_rows($query_run) > 0) {
-                    foreach ($query_run as $row) {
-                     $val = $row['sm_id'];?>
-                        
-                        <tr>
-                           
-                           <th scope="row">1</th>
-                           <td>
-                              <?php echo $row['sm_id'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['service'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['location'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['addr'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['pin'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['mobile'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['whatsapp'] ?>
-                           </td>
-                           <td>
-                              <?php echo $row['email'] ?>
-                           </td>
-                           <td>
-                              <img src="<?php echo $row['img'] ?>" alt="Service Image" width="50">
-                           </td>
-                           <td>
-                              <button class="btn btn-danger btn-sm" onclick="deleteRow(<?php echo $val; ?>)">Delete</button>
+            $user_id = $_SESSION['uId'];
+            $query = "SELECT * FROM service_master WHERE user_id = '$user_id'";
+            $query_run = mysqli_query($conn, $query);
 
-                              <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#updateServiceModal">Update</button>
-                           </td>
+            if (mysqli_num_rows($query_run) > 0) {
+               foreach ($query_run as $row) {
+                  $val = $row['sm_id']; ?>
+
+                  <tr>
+                     <th scope="row">1</th>
+                     <td>
+                        <?php echo $row['sm_id'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['service'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['location'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['addr'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['pin'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['mobile'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['whatsapp'] ?>
+                     </td>
+                     <td>
+                        <?php echo $row['email'] ?>
+                     </td>
+                     <td>
+                        <img src="<?php echo $row['img'] ?>" alt="Service Image" width="50">
+                     </td>
+                     <td>
+                        <button class="btn btn-danger btn-sm" onclick="deleteRow(<?php echo $val; ?>)">Delete</button>
+                        <!-- Inside your loop where you have $val -->
+                        <button class="btn btn-success btn-sm update-btn" data-bs-toggle="modal"
+                           data-bs-target="#updateServiceModal" data-sm-id="<?php echo $val; ?>">Update</button>
 
 
-                        </tr>
+                     </td>
+                  </tr>
                   <?php
-                     }
-                  }
-                ?>
+               }
+            }
+            ?>
 
          </tbody>
       </table>
    </div>
-   <!-- </div> -->
 </div>
 
 <script>
-//  To check image size and proper image format 
+   //  To check image size and proper image format 
    const imageInput = document.getElementById('img');
    const imageFeedback = document.getElementById('imageFeedback');
 
-   imageInput.addEventListener('change', function() {
+   imageInput.addEventListener('change', function () {
       const file = this.files[0];
       const allowedFormats = ['image/jpeg', 'image/png'];
 
@@ -278,8 +281,22 @@ include('../uinclude/sidebar.php');
    });
 
    // Fetch data from database to select dropdown in add service modal
-   document.addEventListener("DOMContentLoaded", function() {
+   document.addEventListener("DOMContentLoaded", function () {
       const dropdown = document.getElementById('service');
+
+      fetch('php/fetch_service_category.php')
+         .then(response => response.json())
+         .then(data => {
+            data.forEach(option => {
+               const optionElement = document.createElement('option');
+               optionElement.textContent = option.s_category;
+               var element = dropdown.appendChild(optionElement);
+            });
+         });
+   });
+
+   document.addEventListener("DOMContentLoaded", function () {
+      const dropdown = document.getElementById('updateservice');
 
       fetch('php/fetch_service_category.php')
          .then(response => response.json())
@@ -295,25 +312,33 @@ include('../uinclude/sidebar.php');
    function deleteRow(smId) {
       if (confirm("Are you sure you want to delete this row?")) {
          let xhr = new XMLHttpRequest();
-         xhr.open("POST", "delete_row.php", true); 
+         xhr.open("POST", "delete_row.php", true);
          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-         xhr.onreadystatechange = function() {
-               if (xhr.readyState == 4 && xhr.status == 200) {
-                  // Row deleted successfully, remove it from the table
-                  let row = document.querySelector("tr[data-sm-id='" + smId + "']");
-                  if (row) {
-                     row.remove();
-                  }
-                  
-                  location.reload();
+         xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+               // Row deleted successfully, remove it from the table
+               let row = document.querySelector("tr[data-sm-id='" + smId + "']");
+               if (row) {
+                  row.remove();
                }
+
+               location.reload();
+            }
          };
          xhr.send("sm_id=" + smId);
          console.log(smId);
       }
    }
 
-   
+   document.querySelectorAll('.update-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+         // Get the sm_id value from the data-sm-id attribute of the clicked button
+         var smId = this.getAttribute('data-sm-id');
+
+         // Set the value to the hidden input field in the form
+         document.getElementById('update_sm_id').value = smId;
+      });
+   });
 </script>
 
 

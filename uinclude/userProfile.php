@@ -26,7 +26,9 @@ include('../uinclude/php/cal_profile_percentage.php');
             aria-valuemin="0" aria-valuemax="100"
             style="width: <?php echo $completionPercentage; ?>%; background-color: <?php echo $barColor; ?>;">
             <strong><span style="color: <?php echo $textColor; ?>; 
-                font-size: <?php echo $textSize; ?>; font-style: bold;"><?php echo $completionPercentage; ?>%</span>
+                font-size: <?php echo $textSize; ?>; font-style: bold;">
+                    <?php echo $completionPercentage; ?>%
+                </span>
             </strong>
         </div>
     </div>
@@ -51,107 +53,107 @@ include('../uinclude/php/cal_profile_percentage.php');
                             $row = mysqli_fetch_assoc($query_run);
                             ?>
 
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Name:</div>
-                            <div class="col-8">
-                                <?php echo $row['firstName'] ?>
-                                <?php echo $row['lastName'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Name:</div>
+                                <div class="col-8">
+                                    <?php echo $row['firstName'] ?>
+                                    <?php echo $row['lastName'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Mobile:</div>
-                            <div class="col-8">
-                                <?php echo $row['mobile'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Mobile:</div>
+                                <div class="col-8">
+                                    <?php echo $row['mobile'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Address:</div>
-                            <div class="col-8">
-                                <?php echo $row['addr'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Address:</div>
+                                <div class="col-8">
+                                    <?php echo $row['addr'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Phone:</div>
-                            <div class="col-8">
-                                <?php echo $row['phone'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Phone:</div>
+                                <div class="col-8">
+                                    <?php echo $row['phone'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Whats App:</div>
-                            <div class="col-8">
-                                <?php echo $row['whatsApp'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Whats App:</div>
+                                <div class="col-8">
+                                    <?php echo $row['whatsApp'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">E-mail:</div>
-                            <div class="col-8">
-                                <?php echo $row['email'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">E-mail:</div>
+                                <div class="col-8">
+                                    <?php echo $row['email'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Date of Birth:</div>
-                            <div class="col-8">
-                                <?php echo $row['dob'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Date of Birth:</div>
+                                <div class="col-8">
+                                    <?php echo $row['dob'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Pan Number:</div>
-                            <div class="col-8">
-                                <?php echo $row['pan'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Pan Number:</div>
+                                <div class="col-8">
+                                    <?php echo $row['pan'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Aadhaar Number:</div>
-                            <div class="col-8">
-                                <?php echo $row['aadhaar'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Aadhaar Number:</div>
+                                <div class="col-8">
+                                    <?php echo $row['aadhaar'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Bank Name:</div>
-                            <div class="col-8">
-                                <?php echo $row['bank_name'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Bank Name:</div>
+                                <div class="col-8">
+                                    <?php echo $row['bank_name'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Account Number:</div>
-                            <div class="col-8">
-                                <?php echo $row['ac_number'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Account Number:</div>
+                                <div class="col-8">
+                                    <?php echo $row['ac_number'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Ifsc Code:</div>
-                            <div class="col-8">
-                                <?php echo $row['ifsc_code'] ?>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Ifsc Code:</div>
+                                <div class="col-8">
+                                    <?php echo $row['ifsc_code'] ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Verification Image:</div>
-                            <div class="col-8">
-                                <a href="<?php echo $row['verification_img'] ?>">
-                                    <img src="<?php echo $row['verification_img'] ?>" alt="Verification Image"
-                                        width="100" height="100">
-                                </a>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Verification Image:</div>
+                                <div class="col-8">
+                                    <a href="<?php echo $row['verification_img'] ?>">
+                                        <img src="<?php echo $row['verification_img'] ?>" alt="Verification Image"
+                                            width="100" height="100">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Bank Image:</div>
-                            <div class="col-8">
-                                <a href="<?php echo $row['bank_img'] ?>">
-                                    <img src="<?php echo $row['bank_img'] ?>" alt="Bank Image" width="100" height="100">
-                                </a>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Bank Image:</div>
+                                <div class="col-8">
+                                    <a href="<?php echo $row['bank_img'] ?>">
+                                        <img src="<?php echo $row['bank_img'] ?>" alt="Bank Image" width="100" height="100">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-4 fw-bold">Profile Image:</div>
-                            <div class="col-8">
-                                <a href="<?php echo $row['profile_img'] ?>">
-                                    <img src="<?php echo $row['profile_img'] ?>" alt="Profile Image" width="100"
-                                        height="100">
-                                </a>
+                            <div class="row mb-3">
+                                <div class="col-4 fw-bold">Profile Image:</div>
+                                <div class="col-8">
+                                    <a href="<?php echo $row['profile_img'] ?>">
+                                        <img src="<?php echo $row['profile_img'] ?>" alt="Profile Image" width="100"
+                                            height="100">
+                                    </a>
+                                </div>
                             </div>
-                        </div>
 
-                        <?php
+                            <?php
                         }
                         // }
                         ?>
@@ -316,116 +318,116 @@ include('../uinclude/php/cal_profile_percentage.php');
  -->
 
     <script>
-    $(document).ready(function() {
+        $(document).ready(function () {
 
-        $('.edit_btn').click(function(e) {
-            e.preventDefault();
-            var userId = <?php echo $_SESSION['uId']; ?>;
+            $('.edit_btn').click(function (e) {
+                e.preventDefault();
+                var userId = <?php echo $_SESSION['uId']; ?>;
 
-            // $('#edit_profileModal').modal('show');
-            // console.log("User ID:", userId);
+                // $('#edit_profileModal').modal('show');
+                // console.log("User ID:", userId);
 
-            $.ajax({
-                type: "POST",
-                url: "php/ueditprofile.php",
-                data: {
-                    'check_proifleedit_btn': true,
-                    'userId': userId,
-                },
-                success: function(response) {
-                    console.log(response);
+                $.ajax({
+                    type: "POST",
+                    url: "php/ueditprofile.php",
+                    data: {
+                        'check_proifleedit_btn': true,
+                        'userId': userId,
+                    },
+                    success: function (response) {
+                        console.log(response);
 
-                    $.each(response, function(key, value) {
-                        $('#edit_firstName').val(value['firstName']);
-                        $('#edit_lastName').val(value['lastName']);
-                        $('#edit_addr').val(value['addr']);
-                        $('#edit_phone').val(value['phone']);
-                        $('#edit_whatsApp').val(value['whatsApp']);
-                        $('#edit_email').val(value['email']);
-                        $('#edit_dob').val(value['dob']);
-                        $('#edit_pan').val(value['pan']);
-                        $('#edit_aadhaar').val(value['aadhaar']);
-                        $('#edit_bank_name').val(value['bank_name']);
-                        $('#edit_acNumber').val(value['ac_number']);
-                        $('#edit_ifsc').val(value['ifsc_code']);
-                    });
+                        $.each(response, function (key, value) {
+                            $('#edit_firstName').val(value['firstName']);
+                            $('#edit_lastName').val(value['lastName']);
+                            $('#edit_addr').val(value['addr']);
+                            $('#edit_phone').val(value['phone']);
+                            $('#edit_whatsApp').val(value['whatsApp']);
+                            $('#edit_email').val(value['email']);
+                            $('#edit_dob').val(value['dob']);
+                            $('#edit_pan').val(value['pan']);
+                            $('#edit_aadhaar').val(value['aadhaar']);
+                            $('#edit_bank_name').val(value['bank_name']);
+                            $('#edit_acNumber').val(value['ac_number']);
+                            $('#edit_ifsc').val(value['ifsc_code']);
+                        });
 
-                    $('#edit_profileModal').modal('show');
+                        $('#edit_profileModal').modal('show');
 
-                }
+                    }
+                });
             });
         });
-    });
 
 
-    //  To check image size and proper image and pdf format for Verification
-    const verifyimgInput = document.getElementById('edit_verify_img');
-    const verifyimgFeedback = document.getElementById('verifyimgFeedback');
+        //  To check image size and proper image and pdf format for Verification
+        const verifyimgInput = document.getElementById('edit_verify_img');
+        const verifyimgFeedback = document.getElementById('verifyimgFeedback');
 
-    verifyimgInput.addEventListener('change', function() {
-        const file = this.files[0];
-        const allowedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
+        verifyimgInput.addEventListener('change', function () {
+            const file = this.files[0];
+            const allowedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
 
-        if (file) {
-            if (!allowedFormats.includes(file.type)) {
-                verifyimgInput.setCustomValidity(
-                    'Invalid image format. Please select a JPG, JPEG, PNG or PDF file.');
-                verifyimgFeedback.style.display = 'block';
-            } else if (file.size > 5 * 1024 * 1024) {
-                verifyimgInput.setCustomValidity('Image size exceeds the maximum limit of 5MB.');
-                verifyimgFeedback.style.display = 'block';
-            } else {
-                verifyimgInput.setCustomValidity('');
-                verifyimgFeedback.style.display = 'none';
+            if (file) {
+                if (!allowedFormats.includes(file.type)) {
+                    verifyimgInput.setCustomValidity(
+                        'Invalid image format. Please select a JPG, JPEG, PNG or PDF file.');
+                    verifyimgFeedback.style.display = 'block';
+                } else if (file.size > 5 * 1024 * 1024) {
+                    verifyimgInput.setCustomValidity('Image size exceeds the maximum limit of 5MB.');
+                    verifyimgFeedback.style.display = 'block';
+                } else {
+                    verifyimgInput.setCustomValidity('');
+                    verifyimgFeedback.style.display = 'none';
+                }
             }
-        }
-    });
+        });
 
-    //  To check image size and proper image and pdf format for Bank
-    const bankimgInput = document.getElementById('edit_bank_img');
-    const bankimgFeedback = document.getElementById('bankimgFeedback');
+        //  To check image size and proper image and pdf format for Bank
+        const bankimgInput = document.getElementById('edit_bank_img');
+        const bankimgFeedback = document.getElementById('bankimgFeedback');
 
-    bankimgInput.addEventListener('change', function() {
-        const file = this.files[0];
-        const allowedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
+        bankimgInput.addEventListener('change', function () {
+            const file = this.files[0];
+            const allowedFormats = ['image/jpeg', 'image/png', 'application/pdf'];
 
-        if (file) {
-            if (!allowedFormats.includes(file.type)) {
-                bankimgInput.setCustomValidity(
-                    'Invalid image format. Please select a JPG, JPEG, PNG or PDF file.');
-                bankimgFeedback.style.display = 'block';
-            } else if (file.size > 5 * 1024 * 1024) {
-                bankimgInput.setCustomValidity('Image size exceeds the maximum limit of 5MB.');
-                bankimgFeedback.style.display = 'block';
-            } else {
-                bankimgInput.setCustomValidity('');
-                bankimgFeedback.style.display = 'none';
+            if (file) {
+                if (!allowedFormats.includes(file.type)) {
+                    bankimgInput.setCustomValidity(
+                        'Invalid image format. Please select a JPG, JPEG, PNG or PDF file.');
+                    bankimgFeedback.style.display = 'block';
+                } else if (file.size > 5 * 1024 * 1024) {
+                    bankimgInput.setCustomValidity('Image size exceeds the maximum limit of 5MB.');
+                    bankimgFeedback.style.display = 'block';
+                } else {
+                    bankimgInput.setCustomValidity('');
+                    bankimgFeedback.style.display = 'none';
+                }
             }
-        }
-    });
+        });
 
-    //  To check image size and proper image format 
-    const imageInput = document.getElementById('edit_img');
-    const imageFeedback = document.getElementById('imageFeedback');
+        //  To check image size and proper image format 
+        const imageInput = document.getElementById('edit_img');
+        const imageFeedback = document.getElementById('imageFeedback');
 
-    imageInput.addEventListener('change', function() {
-        const file = this.files[0];
-        const allowedFormats = ['image/jpeg', 'image/png'];
+        imageInput.addEventListener('change', function () {
+            const file = this.files[0];
+            const allowedFormats = ['image/jpeg', 'image/png'];
 
-        if (file) {
-            if (!allowedFormats.includes(file.type)) {
-                imageInput.setCustomValidity(
-                    'Invalid image format. Please select a JPG, JPEG, or PNG image.');
-                imageFeedback.style.display = 'block';
-            } else if (file.size > 5 * 1024 * 1024) {
-                imageInput.setCustomValidity('Image size exceeds the maximum limit of 5MB.');
-                imageFeedback.style.display = 'block';
-            } else {
-                imageInput.setCustomValidity('');
-                imageFeedback.style.display = 'none';
+            if (file) {
+                if (!allowedFormats.includes(file.type)) {
+                    imageInput.setCustomValidity(
+                        'Invalid image format. Please select a JPG, JPEG, or PNG image.');
+                    imageFeedback.style.display = 'block';
+                } else if (file.size > 5 * 1024 * 1024) {
+                    imageInput.setCustomValidity('Image size exceeds the maximum limit of 5MB.');
+                    imageFeedback.style.display = 'block';
+                } else {
+                    imageInput.setCustomValidity('');
+                    imageFeedback.style.display = 'none';
+                }
             }
-        }
-    });
+        });
     </script>
 
 
