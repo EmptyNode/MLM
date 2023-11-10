@@ -35,7 +35,7 @@ include('../uinclude/sidebar.php');
                            name="pincode" required>
                      </div>
                      <div class="col-md-6">
-                        <textarea id="desc" class="form-control mb-3" placeholder="Description" name="desc" required></textarea>
+                        <textarea id="des" class="form-control mb-3" placeholder="Description" name="des" required></textarea>
                     </div>
 
                      <!-- <div class="col-md-6">

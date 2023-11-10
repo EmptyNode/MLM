@@ -1,9 +1,16 @@
 <?php
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 // Include necessary files and perform authentication checks
-include('php/db_conn.php');
-include('../auth.php');
+if (!isset($_SESSION['uId'])) {
+    header('Location: login.php');
+    // exit;
+}
+
+require_once 'db_conn.php';
 
 if (isset($_POST['reqService'])) {
     // Retrieve form inputs and perform basic sanitation
@@ -33,9 +40,10 @@ if (isset($_POST['reqService'])) {
         // All uploaded images are valid
 
         // Generate unique file names for images
-        $image1FileName = generateUniqueFileName($image1['name'], 1);
-        $image2FileName = generateUniqueFileName($image2['name'], 2);
-        $image3FileName = generateUniqueFileName($image3['name'], 3);
+        $image1FileName = generateUniqueFileName($image1['name'], 1, $conn);
+        $image2FileName = generateUniqueFileName($image2['name'], 2, $conn);
+        $image3FileName = generateUniqueFileName($image3['name'], 3, $conn);
+
 
         // Define the target paths for the images
         $targetPath1 = "../userUploads/" . $image1FileName;
@@ -51,8 +59,17 @@ if (isset($_POST['reqService'])) {
         $user_id = $_SESSION['uId'];
 
         // Insert the new service request into the database
-        $sql = "INSERT INTO new_service_request (service, pincode, desc, image1, image2, image3, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
+        $sql = "INSERT INTO new_service_request (service, pincode, des, image1, image2, image3, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        if (!$conn) {
+            die("Connection failed: " . $conn->connect_error);
+        } else {
+            $stmt = $conn->prepare($sql);
+            if (!$stmt) {
+                die("Error in preparing statement: " . $conn->error);
+            }
+        }
+        
 
         if ($stmt) {
             $stmt->bind_param("ssssssi", $service, $pincode, $addr, $image1FileName, $image2FileName, $image3FileName, $user_id);
@@ -66,7 +83,8 @@ if (isset($_POST['reqService'])) {
             }
             $stmt->close();
         } else {
-            echo "Error: " . $conn->error();
+            echo "Error: " . $conn->error;
+
         }
     } else {
         echo "Invalid image format. Allowed formats: jpg, jpeg, png.";
@@ -74,8 +92,12 @@ if (isset($_POST['reqService'])) {
 }
 
 // Function to generate a unique filename
-function generateUniqueFileName($originalFileName, $index = '')
+function generateUniqueFileName($originalFileName, $index, $conn)
 {
+    // if ($conn) {
+    //     $conn->close(); // Close the connection when done
+    // }
+    
     $datetime = date('YmdHis'); // Using YmdHis format for a unique filename
     $randomString = substr(md5(mt_rand()), 0, 5);
     $extension = pathinfo($originalFileName, PATHINFO_EXTENSION); // Get the file extension
