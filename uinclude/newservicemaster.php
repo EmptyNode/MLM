@@ -24,8 +24,8 @@ include('../uinclude/sidebar.php');
                <div class="modal-body">
                   <div class="form-group row">
                      <div class="col-md-6">
-                        <input type="text" id="service" class="form-control mb-3" placeholder="Service"
-                                    name="service" required>
+                        <input type="text" id="name" class="form-control mb-3" placeholder="Name"
+                                    name="name" required>
                         <!-- <select id="service" class="form-select mb-3" placeholder="Service" name="service"
                            required></select> -->
 
@@ -35,7 +35,7 @@ include('../uinclude/sidebar.php');
                            name="pincode" required>
                      </div>
                      <div class="col-md-6">
-                        <textarea id="des" class="form-control mb-3" placeholder="Description" name="des" required></textarea>
+                        <textarea id="description" class="form-control mb-3" placeholder="Description" name="description" required></textarea>
                     </div>
 
                      <!-- <div class="col-md-6">

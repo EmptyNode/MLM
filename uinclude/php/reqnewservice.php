@@ -14,9 +14,9 @@ require_once 'db_conn.php';
 
 if (isset($_POST['reqService'])) {
     // Retrieve form inputs and perform basic sanitation
-    $service = filter_input(INPUT_POST, 'service', FILTER_SANITIZE_STRING);
+    $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
     $pincode = filter_input(INPUT_POST, 'pincode', FILTER_SANITIZE_STRING);
-    $addr = filter_input(INPUT_POST, 'desc', FILTER_SANITIZE_STRING);
+    $description = filter_input(INPUT_POST, 'description', FILTER_SANITIZE_STRING);
 
     // Check if the image files were uploaded without errors
     $image1 = $_FILES['image1'];
@@ -59,7 +59,7 @@ if (isset($_POST['reqService'])) {
         $user_id = $_SESSION['uId'];
 
         // Insert the new service request into the database
-        $sql = "INSERT INTO new_service_request (service, pincode, des, image1, image2, image3, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO new_service_request (name, pincode, description, image1, image2, image3, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if (!$conn) {
             die("Connection failed: " . $conn->connect_error);
@@ -72,7 +72,7 @@ if (isset($_POST['reqService'])) {
         
 
         if ($stmt) {
-            $stmt->bind_param("ssssssi", $service, $pincode, $addr, $image1FileName, $image2FileName, $image3FileName, $user_id);
+            $stmt->bind_param("ssssssi", $name, $pincode, $addr, $image1FileName, $image2FileName, $image3FileName, $user_id);
 
             if ($stmt->execute()) {
                 $_SESSION['status'] = "Service request added successfully";
