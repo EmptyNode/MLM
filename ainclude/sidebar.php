@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="./newrequests.php">
                             <span class="icon">
                                 <ion-icon name="person-outline"></ion-icon>
                             </span>

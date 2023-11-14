@@ -191,11 +191,10 @@ include('../uinclude/sidebar.php');
                <th scope="col">Id</th>
                <th scope="col">Service</th>
                <th scope="col">Location</th>
-               <th scope="col">Address</th>
-               <th scope="col">PinCode</th>
-               <th scope="col">Mobile</th>
-               <th scope="col">Whats App</th>
-               <th scope="col">E-mail</th>
+               <th scope="col">Description</th>
+               <th scope="col">Status</th>
+               <th scope="col">Image</th>
+               <th scope="col">Image</th>
                <th scope="col">Image</th>
                <th scope="col"></th>
             </tr>
@@ -206,46 +205,43 @@ include('../uinclude/sidebar.php');
                 
                 $user_id = $_SESSION['uId'];
                 // echo "id : " . $user_id;
-                $query = "SELECT * FROM service_master WHERE user_id = '$user_id'";
+                $query = "SELECT * FROM new_service_request WHERE user_id = '$user_id'";
                 $query_run = mysqli_query($conn, $query);
                 if (mysqli_num_rows($query_run) > 0) {
                     foreach ($query_run as $row) {
-                     $val = $row['sm_id'];?>
+                     $val = $row['id'];?>
                         
                         <tr>
                            
                            <th scope="row">1</th>
                            <td>
-                              <?php echo $row['sm_id'] ?>
+                              <?php echo $row['id'] ?>
                            </td>
                            <td>
-                              <?php echo $row['service'] ?>
+                              <?php echo $row['name'] ?>
                            </td>
                            <td>
-                              <?php echo $row['location'] ?>
+                              <?php echo $row['pincode'] ?>
                            </td>
                            <td>
-                              <?php echo $row['addr'] ?>
+                              <?php echo $row['description'] ?>
                            </td>
                            <td>
-                              <?php echo $row['pin'] ?>
+                              <?php echo $row['status'] ?>
                            </td>
                            <td>
-                              <?php echo $row['mobile'] ?>
+                              <img src="<?php echo $row['image1'] ?>" alt="Service Image" width="50">
                            </td>
                            <td>
-                              <?php echo $row['whatsapp'] ?>
+                              <img src="<?php echo $row['image2'] ?>" alt="Service Image" width="50">
                            </td>
                            <td>
-                              <?php echo $row['email'] ?>
-                           </td>
-                           <td>
-                              <img src="<?php echo $row['img'] ?>" alt="Service Image" width="50">
+                              <img src="<?php echo $row['image3'] ?>" alt="Service Image" width="50">
                            </td>
                            <td>
                               <button class="btn btn-danger btn-sm" onclick="deleteRow(<?php echo $val; ?>)">Delete</button>
 
-                              <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#updateServiceModal">Update</button>
+                              <!-- <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#updateServiceModal">Update</button> -->
                            </td>
 
 
@@ -300,15 +296,15 @@ include('../uinclude/sidebar.php');
          });
    });
 
-   function deleteRow(smId) {
+   function deleteRow(id) {
       if (confirm("Are you sure you want to delete this row?")) {
          let xhr = new XMLHttpRequest();
-         xhr.open("POST", "delete_row.php", true); 
+         xhr.open("POST", "delete_req.php", true); 
          xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
          xhr.onreadystatechange = function() {
                if (xhr.readyState == 4 && xhr.status == 200) {
                   // Row deleted successfully, remove it from the table
-                  let row = document.querySelector("tr[data-sm-id='" + smId + "']");
+                  let row = document.querySelector("tr[data-sm-id='" + id + "']");
                   if (row) {
                      row.remove();
                   }
@@ -316,8 +312,8 @@ include('../uinclude/sidebar.php');
                   location.reload();
                }
          };
-         xhr.send("sm_id=" + smId);
-         console.log(smId);
+         xhr.send("id=" + id);
+         console.log(id);
       }
    }
 

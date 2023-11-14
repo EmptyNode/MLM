@@ -76,7 +76,7 @@ if (isset($_POST['reqService'])) {
 
             if ($stmt->execute()) {
                 $_SESSION['status'] = "Service request added successfully";
-                header('Location: ../areamaster.php');
+                header('Location: ../newservicemaster.php');
                 exit;
             } else {
                 echo "Execution Error: " . $stmt->error;
