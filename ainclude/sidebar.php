@@ -50,6 +50,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="./newrequests.php">
+                            <span class="icon">
+                                <ion-icon name="person-outline"></ion-icon>
+                            </span>
+                            <span class="title">New Request</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="../auth_out.php">
                             <span class="icon">
                                 <ion-icon name="log-out-outline"></ion-icon>

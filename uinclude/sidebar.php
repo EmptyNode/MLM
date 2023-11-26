@@ -78,7 +78,15 @@ if (isset($_SESSION['uId'])) {
                             <span class="title">Area Master</span>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="../uinclude/newservicemaster.php">
+                            <span class="icon">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                            </span>
+                            <span class="title">Request Service</span>
+                        </a>
+                    </li>
+                    
                     <li>
                         <a href="../uinclude/userProfile.php">
                             <span class="icon">
