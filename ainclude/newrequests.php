@@ -165,109 +165,65 @@ include('../ainclude/sidebar.php');
                                                     <input type="text" id="view_uId" class="form-control mb-3"
                                                         placeholder="User Id" name="uId" hidden>
                                                 </div> -->
-                                                <div class="col-md-6">
-                                                    <label for="">First Name</label>
+                                                <div class="mb-2">
+                                                    <label for="">Service Name</label>
                                                     <input type="text" id="view_firstName" class="form-control mb-3"
-                                                        placeholder="First Name" name="firstName" disabled>
+                                                        placeholder="Service Name" name="firstName" disabled>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <label for="">Last Name</label>
-                                                    <input type="text" id="view_lastName" class="form-control mb-3"
-                                                        placeholder="Last Name" name="lastName" disabled>
-                                                </div>
-                                                <p class="mb-2">Mobile No.</p>
-                                                <div>
+                                        
+                                                <!-- <p class="mb-2">Mobile No.</p> -->
+                                                <!-- <div>
                                                     <input type="text" id="view_mobile" class="form-control mb-3"
                                                         placeholder="Mobile" name="mobile"
                                                         oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
                                                         maxlength="10" pattern="[0-9]{10}"
                                                         title="Please enter 10 Digit Phone Number only" disabled>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-12">
-                                                    <label for="">Address</label>
+                                                    <label for="">Pincode</label>
                                                     <input type="text" id="view_addr" class="form-control mb-3"
-                                                        placeholder="Address" name="addr" disabled>
+                                                        placeholder="Pincode" name="addr" disabled>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <!-- <div class="col-md-6">
                                                     <label for="">Phone Number</label>
                                                     <input type="text" id="view_phone" class="form-control mb-3"
                                                         placeholder="Phone" name="phone"
                                                         oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
                                                         maxlength="10" pattern="[0-9]{10}"
                                                         title="Please enter 10 Digit Phone Number only" disabled>
-                                                </div>
-                                                <div class="col-md-6">
+                                                </div> -->
+                                                <!-- <div class="col-md-6">
                                                     <label for="">Whats App</label>
                                                     <input type="text" id="view_whatsApp" class="form-control mb-3"
                                                         placeholder="Whats App Number" name="whatsApp"
                                                         oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
                                                         maxlength="10" pattern="[0-9]{10}"
                                                         title="Please enter 10 Digit Phone Number only" disabled>
-                                                </div>
+                                                </div> -->
 
-                                                <div class="col-md-6">
-                                                    <label for="">E-mail</label>
-                                                    <input type="email" id="view_email" class="form-control mb-3"
-                                                        placeholder="E-mail" name="email" disabled>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="">Date of Birth</label>
-                                                    <input type="date" id="view_dob" class="form-control mb-3"
-                                                        placeholder="Date of Birth" name="dob" disabled>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="">Pan Number</label>
-                                                    <input type="text" id="view_pan" class="form-control mb-3"
-                                                        placeholder="Pan Number" name="pan"
-                                                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
-                                                        maxlength="10" pattern="[0-9]{10}"
-                                                        title="Please enter Valid Pan Number" disabled>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="">Aadhaar Number</label>
-                                                    <input type="text" id="view_aadhaar" class="form-control mb-3"
-                                                        placeholder="Aadhaar" name="aadhaar"
-                                                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 12) this.value = this.value.slice(0, 12);"
-                                                        maxlength="12" pattern="[0-9]{12}"
-                                                        title="Please enter 12 digits Aadhaar Number" disabled>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="">Bank Name</label>
-                                                    <input type="text" id="view_bank_name" class="form-control mb-3"
-                                                        placeholder="Bank Name" name="bank_name" disabled>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <label for="">IFSC Code</label>
-                                                    <input type="text" id="view_ifsc" class="form-control mb-3"
-                                                        placeholder="IFSC Code" name="ifsc_code" disabled>
+                                                <div class="mb-2">
+                                                    <label for="">Description</label>
+                                                    <textarea type="text" id="view_email" class="form-control mb-3"
+                                                        placeholder="Description" name="email" disabled>
+                                                    </textarea>
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <label for="">Account Number</label>
-                                                    <input type="text" id="view_acNumber" class="form-control mb-3"
-                                                        placeholder="Account Number" name="ac_number" disabled>
-                                                </div>
-
-                                                <div class="col-md-12">
-                                                    <label for="">Verification Image</label>
+                                                    <label for="">Image 1 </label>
                                                     <img class="float-end" src="" id="view_verificationImg"
                                                         alt="Verification Image" width="100" height="100"
                                                         data-toggle="modal" data-target="#fullImageModal">
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <label for="">Bank Image</label>
+                                                    <label for="">Image 2</label>
                                                     <img class="float-end" src="" id="view_bankImg" alt="Bank Image"
                                                         width="100" height="100" data-toggle="modal"
                                                         data-target="#fullImageModal">
                                                 </div>
 
                                                 <div class="col-md-12">
-                                                    <label for="">Profile Image</label>
+                                                    <label for="">Image 3</label>
                                                     <img class="float-end" src="" id="view_profileImg"
                                                         alt="Profile Image" width="100" height="100" data-toggle="modal"
                                                         data-target="#fullImageModal">
@@ -314,22 +270,22 @@ include('../ainclude/sidebar.php');
     $(document).ready(function () {
         $(".approvalBtn").click(function () {
             // e.preventDefault();
-            var user_id = $(this).val();
-            console.log(user_id);
+            var id = $(this).val();
+            console.log(id);
             $.ajax({
                 type: "POST",
-                url: "php/approval.php",
+                url: "php_r/req_approval.php",
                 data: {
                     'check_approval_btn': true,
-                    'userId': user_id,
+                    'id': id,
                 },
                 success: function (response) {
                     console.log(response);
 
                     $.each(response, function (key, value) {
-                        $('#view_uId').val(value['uId']);
+                        $('#view_id').val(value['id']);
                         view_approval_get
-                        var approvalAtatus = value['approval_status'];
+                        var approvalAtatus = value['status'];
                         // Get the input element by its ID
                         var modalInput = document.getElementById('view_approval');
 
@@ -340,7 +296,7 @@ include('../ainclude/sidebar.php');
                             $('#view_approval').val("Approved");
                             modalInput.style.backgroundColor = '#86F9CF';
                         }
-                        $('#view_approval_get').val(value['approval_status']);
+                        $('#view_approval_get').val(value['status']);
 
                         $('#view_firstName').val(value['firstName']);
                         $('#view_lastName')
