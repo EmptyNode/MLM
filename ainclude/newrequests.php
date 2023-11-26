@@ -148,7 +148,7 @@ include('../ainclude/sidebar.php');
                                             aria-label="Close"></button>
                                     </div>
 
-                                    <form action="php/approval.php" method="POST" enctype="multipart/form-data">
+                                    <form action="php_r/req_approval.php" method="POST" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="form-group row">
 
@@ -211,13 +211,13 @@ include('../ainclude/sidebar.php');
                                                 <div class="col-md-12">
                                                     <label for="">Image 1 </label>
                                                     <img class="float-end" src="" id="view_verificationImg"
-                                                        alt="Verification Image" width="100" height="100"
+                                                        alt="Image1" width="100" height="100"
                                                         data-toggle="modal" data-target="#fullImageModal">
                                                 </div>
 
                                                 <div class="col-md-12">
                                                     <label for="">Image 2</label>
-                                                    <img class="float-end" src="" id="view_bankImg" alt="Bank Image"
+                                                    <img class="float-end" src="" id="view_bankImg" alt="Image2"
                                                         width="100" height="100" data-toggle="modal"
                                                         data-target="#fullImageModal">
                                                 </div>
@@ -225,7 +225,7 @@ include('../ainclude/sidebar.php');
                                                 <div class="col-md-12">
                                                     <label for="">Image 3</label>
                                                     <img class="float-end" src="" id="view_profileImg"
-                                                        alt="Profile Image" width="100" height="100" data-toggle="modal"
+                                                        alt="Image3" width="100" height="100" data-toggle="modal"
                                                         data-target="#fullImageModal">
                                                 </div>
 
@@ -298,17 +298,16 @@ include('../ainclude/sidebar.php');
                         }
                         $('#view_approval_get').val(value['status']);
 
-                        $('#view_firstName').val(value['firstName']);
-                        $('#view_lastName')
-                            .val(value['lastName']);
+                        $('#view_firstName').val(value['name']);
+                        
                         $('#view_mobile').val(value['mobile']);
                         $(
-                            '#view_addr').val(value['addr']);
+                            '#view_addr').val(value['pincode']);
                         $('#view_phone').val(value[
                             'phone']);
                         $('#view_whatsApp').val(value['whatsApp']);
                         $(
-                            '#view_email').val(value['email']);
+                            '#view_email').val(value['description']);
                         $('#view_dob').val(value[
                             'dob']);
                         $('#view_pan').val(value['pan']);
@@ -320,9 +319,9 @@ include('../ainclude/sidebar.php');
                         $('#view_ifsc').val(value['ifsc_code']);
 
                         $("#view_verificationImg").attr("src", value[
-                            'verification_img']);
-                        $("#view_bankImg").attr("src", value['bank_img']);
-                        $("#view_profileImg").attr("src", value['profile_img']);
+                            'image1_img']);
+                        $("#view_bankImg").attr("src", value['image2_img']);
+                        $("#view_profileImg").attr("src", value['image3_img']);
 
                         // $('#view_profileImg').val(value['profile_img']);
                     });

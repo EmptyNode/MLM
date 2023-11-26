@@ -25,7 +25,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="dashboard.php">
                             <span class="icon">
                                 <ion-icon name="home-outline"></ion-icon>
                             </span>
