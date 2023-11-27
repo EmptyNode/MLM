@@ -334,6 +334,25 @@ include('../ainclude/sidebar.php');
 
     });
 
+    document.getElementById("approveBtn").onclick = function () {
+        var approvalStatus = document.getElementById("view_approval_get").value;
+        var uId = document.getElementById("view_uId").value;
+       $.ajax({
+            type: "POST",
+            url: "php_r/req_approval.php",
+            data: {
+                'give_approval': true,
+                'status': approvalStatus,
+                'uId': uId,
+            },
+            success: function (response) {
+                console.log(response);
+                // $('#approvalModal').modal('hide');
+                // location.reload();
+            }
+        });
+    }
+
     // When user clicks on image in the modal, show it in full size modal
     $(document).on("click", "#view_profileImg", function () {
         var fullImagePath = $(this).attr("src");

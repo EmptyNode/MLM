@@ -32,7 +32,9 @@ if (isset($_SESSION['uId'])) {
         // Handle the case where the statement couldn't be prepared
     }
 }
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -43,6 +45,7 @@ if (isset($_SESSION['uId'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" type="text/css" href="../css/upanel.css">
+
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" charset="utf-8"></script>
@@ -133,6 +136,34 @@ if (isset($_SESSION['uId'])) {
 
 
                     <!-- userImage -->
+                    <div style="display: flex; align-items: center;">
+                    <?php
+// Fetch rows for the particular user
+$query = "SELECT amount FROM wallet WHERE uId = '$user_id'";
+$result = mysqli_query($conn, $query);
+
+// Initialize a variable to store the total amount
+$total_amount = 0;
+
+// Check if there are rows
+if (mysqli_num_rows($result) > 0) {
+    // Loop through the rows and sum up the amounts
+    while ($row = mysqli_fetch_assoc($result)) {
+        $total_amount += $row['amount'];
+    }
+}
+// Close the database connection
+// mysqli_close($conn);
+
+// Output the total amount
+// echo "Total Amount for User ID $user_id: $total_amount";
+?>
+                        <!-- Wallet Icon (Outlined and Increased Size) -->
+                        <ion-icon name="wallet-outline" style="font-size: 2em;"></ion-icon>
+
+                        <!-- Amount Text -->
+                        <p style="margin-left: 5px;"><?php echo $total_amount; ?></p>
+                    </div>
                     <div class="user" style="background-color: <?php echo $profilepic?>; border-radius: 50%;"></div>
 
 

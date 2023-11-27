@@ -152,6 +152,16 @@ include('../uinclude/php/cal_profile_percentage.php');
                                     </a>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                            <div class="col-4 fw-bold">Payment Status:</div>
+                            <div class="col-8">
+                                <?php if ($row['approval_status'] == 'completed'): ?>
+                                    <span class="text-success">Payment Completed</span>
+                                <?php else: ?>
+                                    <button class="btn btn-success" id="paymentButton" onclick="redirectToPayment()">Make Payment</button>
+                                <?php endif; ?>
+                            </div>
+                        </div>
 
                             <?php
                         }
@@ -428,6 +438,12 @@ include('../uinclude/php/cal_profile_percentage.php');
                 }
             }
         });
+
+        function redirectToPayment() {
+        // Redirect to the payment screen (update the URL accordingly)
+        window.location.href = ' /MLM/uinclude/payment_screen.php';
+    }
+
     </script>
 
 
