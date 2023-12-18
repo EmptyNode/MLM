@@ -219,7 +219,7 @@ function updateWalletBalance() {
                 amount: 20
             },
             success: function(response) {
-                // console.log(response);
+                console.log(response);
                 // Show your success toast here
                 alert('Transaction successful!'); // Temporary alert, replace with your toast code
             },

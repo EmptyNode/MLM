@@ -6,82 +6,92 @@ include('db_conn.php');
 
 // Check if the request is a POST request
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
-    // Get the userId and amount from the POST data
+    // Get the userId, amount, and referral code from the POST data
     $userId = $_POST['userId'];
     $amount = $_POST['amount'];
     $referralCode = $_POST['referel'];
+
     // Validate and sanitize the input if needed
 
+    // Use prepared statements to prevent SQL injection
+    $sql = $conn->prepare("INSERT INTO wallet (uId, amount) VALUES (?, ?)");
+    $sql->bind_param("id", $userId, $amount);
 
-    // Insert a new row into your wallet table
-    // Replace the following lines with your actual database insert logic
-    // Make sure to handle errors appropriately
-
-    // Example: Insert a new row into a hypothetical 'wallet_transactions' table
-    $sql = "INSERT INTO wallet (uId, amount) VALUES ($userId, $amount)";
-
-    if ($conn->query($sql) === TRUE) {
+    if ($sql->execute()) {
         echo "Payment successful.";
-         // Construct the SQL query to find userId based on referral code
-        $findUserIdQuery = "SELECT uId FROM user_tbl WHERE auto_referralcode = '$referralCode'";
-        $result = $conn->query($findUserIdQuery);
+
+        // Find userId based on referral code
+        $findUserIdQuery = $conn->prepare("SELECT uId FROM user_tbl WHERE auto_referralcode = ?");
+        $findUserIdQuery->bind_param("s", $referralCode);
+        $findUserIdQuery->execute();
+        $result = $findUserIdQuery->get_result();
+
         if ($result && $result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $usrId = $row['uId'];
-            $referalCode = $row['referralCode'];
-    
-            // Insert a new row into your wallet table
-            $insertWalletQuery = "INSERT INTO wallet (uId, amount) VALUES ($usrId, $amount)";
-            if($conn->query($insertWalletQuery) === TRUE) {
+
+            // Insert a new row into your wallet table for the referrer
+            $insertWalletQuery = $conn->prepare("INSERT INTO wallet (uId, amount) VALUES (?, ?)");
+            $insertWalletQuery->bind_param("id", $usrId, $amount);
+
+            if ($insertWalletQuery->execute()) {
                 echo "Payment successful.";
 
                 // For loop
                 for ($i = 0; $i < 15; $i++) {
                     echo "Iteration $i<br>"; // Debug statement
-                  
-                    $findUIdQuery = "SELECT uId, referralCode FROM user_tbl WHERE auto_referralCode = '$referalCode'";
-                    $res = $conn->query($findUIdQuery);
+
+                    // Find userId and referral code based on the referral code
+                    $findUIdQuery = $conn->prepare("SELECT uId, referralCode FROM user_tbl WHERE auto_referralCode = ?");
+                    $findUIdQuery->bind_param("s", $referralCode);
+                    $res = $findUIdQuery->execute();
+                    $res = $findUIdQuery->get_result();
 
                     if ($res === FALSE) {
                         echo "Error in query: " . $conn->error;
                         break; // Exit the loop on query error
                     }
-        
+
                     if ($res && $res->num_rows > 0) {
                         $row = $res->fetch_assoc();
                         $usrId = $row['uId'];
-                        $referalCode = $row['referralCode'];
-                        $bonusAmount = 0.53;
-        
+                        $referralCode = $row['referralCode'];
+                        $bonusAmount = ($i === 0) ? 20 : 0.53; // Assign different bonus amounts based on the level
+
                         // Insert a new row into your wallet table
-                        // Adding .53 rs to the user's wallet
-                        $InsertWalletQuery = "INSERT INTO wallet (uId, amount) VALUES ($usrId, $bonusAmount)";
+                        // Adding the calculated bonus amount to the user's wallet
+                        $insertWalletQuery = $conn->prepare("INSERT INTO wallet (uId, amount) VALUES (?, ?)");
+                        $insertWalletQuery->bind_param("id", $usrId, $bonusAmount);
 
                         echo "Executing query: $InsertWalletQuery<br>"; // Debug statement
-                        
-                        if ($conn->query($InsertWalletQuery) === TRUE) {
-                            echo "Added .53 rs to the user's wallet (UserID: $usrId)";
+
+                        if ($insertWalletQuery->execute()) {
+                            echo "Added $bonusAmount rs to the user's wallet (UserID: $usrId)";
                         } else {
-                            echo "Error adding .53 rs to the user's wallet: " . $conn->error;
+                            echo "Error adding $bonusAmount rs to the user's wallet: " . $conn->error;
                         }
                     } else {
                         // No user found for the given referral code
-                        echo "No user found for referral code: $referalCode";
+                        echo "No user found for referral code: $referralCode";
                         break; // Exit the loop
                     }
                 }
             } else {
-                echo "Error: " . $insertWalletQuery . "<br>" . $conn->error;
+                echo "Error: " . $conn->error;
             }
         }
+
         // Redirect to dashboard.php
         header("Location: /MLM/uinclude/dashboard.php");
         exit(); // Make sure to exit to prevent further execution
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $conn->error;
     }
 
-    // $conn->close();
+    // Close prepared statements
+    $sql->close();
+    $findUserIdQuery->close();
+    $insertWalletQuery->close();
 } else {
     // Handle non-POST requests
     echo "Invalid request method";
