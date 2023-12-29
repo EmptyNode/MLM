@@ -174,13 +174,74 @@ include('../uinclude/sidebar.php');
 
     ?>
 
-   <div class="card ">
-      <div class="card-header">
-         <h3 class="card-title">Transactions
-            <!-- <a class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#addServiceModal" href="#">Add</a> -->
-         </h3>
-      </div>
-   </div>
+<?php
+$user_id = $_SESSION['uId'];
+
+// Assuming you have the user's wallet balance available in $walletBalance
+// Replace the line below with the actual logic to retrieve the wallet balance
+
+
+
+$query = "SELECT amount FROM wallet WHERE uId = '$user_id'";
+$result = mysqli_query($conn, $query);
+
+// Initialize a variable to store the total amount
+$walletBalance = 0;
+
+// Check if there are rows
+if (mysqli_num_rows($result) > 0) {
+    // Loop through the rows and sum up the amounts
+    while ($row = mysqli_fetch_assoc($result)) {
+      $walletBalance += $row['amount'];
+    }
+}
+
+
+$sql_query = "SELECT COUNT(*) AS referralCount FROM user_tbl WHERE parent_id = $user_id";
+
+$resultset = mysqli_query($conn, $sql_query) or die("database error:" . mysqli_error($conn));
+
+// Fetch the result
+$row = mysqli_fetch_assoc($resultset);
+$numberOfReferrals = isset($row['referralCount']) ? $row['referralCount'] : 0;
+
+?>
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title">Transactions</h3>
+
+        <?php if ($numberOfReferrals >= 2): ?>
+            <!-- Only show the Withdraw button if the user has referred at least 2 people -->
+            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#withdrawModal">Withdraw</button>
+        <?php endif; ?>
+    </div>
+</div>
+
+<!-- Withdraw Modal -->
+<div class="modal fade" id="withdrawModal" tabindex="-1" aria-labelledby="withdrawModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="withdrawModalLabel">Withdraw Amount</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your form fields for withdrawing amount here -->
+                <form action="withdraw.php" method="post">
+                    <div class="mb-3">
+                        <label for="withdrawAmount" class="form-label">Enter Amount:</label>
+                        <input type="number" class="form-control" id="withdrawAmount" name="withdrawAmount" min="0" max="<?php echo $walletBalance; ?>">
+                        <small class="text-muted">Available Balance: <?php echo $walletBalance; ?></small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Withdraw</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
    <!-- <div style="height: 100vh;"> -->
    <div class="table-responsive" style="height: 70vh; overflow-y: auto;">

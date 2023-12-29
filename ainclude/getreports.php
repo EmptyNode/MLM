@@ -35,59 +35,74 @@ include_once("generate_excel.php");
 
                     <li class="divider"></li>
 
-                    <li><a href="#">Other</a></li>
+                    <li>
+                        <a href="#">Other</a>
+                    </li>
                 </ul>
             </div>
         </div>
 
+        <div class="col-sm-6">
+    <label for="report-type">Select Report Type:</label>
+    <select class="form-control" id="report-type" name="reportType">
+        <option value="user_report">User Report</option>
+        <option value="other_report">Other Report</option>
+        <!-- Add more options for different reports as needed -->
+    </select>
+</div>
+
+<div class="col-sm-6">
+    <label for="start-date">Select Start Date:</label>
+    <input type="date" class="form-control" id="start-date" name="startDate">
+</div>
+
+<div class="col-sm-6">
+    <label for="end-date">Select End Date:</label>
+    <input type="date" class="form-control" id="end-date" name="endDate">
+</div>
+
         <form action="generate_excel.php" method="post" id="export-form">
             <input type="hidden" value="" id="hidden-type" name="ExportType" />
+            <input type="hidden" value="" id="hidden-report-type" name="reportType" />
         </form>
 
         <table id="" class="table table-striped table-bordered">
             <tbody>
                 <tr>
                     <th>Name</th>
-
                     <th>Parent</th>
-
                     <th>Contact</th>
-
-                    <th>Refferel</th>
+                    <th>Referral</th>
                 </tr>
             </tbody>
             <tbody>
-                <?php foreach($tasks as $row):?>
-
-                <tr>
-                    <td><?php echo $row ['firstName']?></td>
-
-                    <td><?php echo $row ['parent_id']?></td>
-
-                    <td><?php echo $row ['mobile']?></td>
-
-                    <td><?php echo $row ['auto_referralCode']?></td>
-                </tr>
-
+                <?php foreach($tasks as $row): ?>
+                    <tr>
+                        <td><?php echo $row['firstName']?></td>
+                        <td><?php echo $row['parent_id']?></td>
+                        <td><?php echo $row['mobile']?></td>
+                        <td><?php echo $row['auto_referralCode']?></td>
+                    </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
 </div>
 
-
 <script type="text/javascript">
-$(document).ready(function() {
-    $('#export-to-excel').bind("click", function() {
-        var target = $(this).attr('id');
-        switch(target) {
-            case 'export-to-excel':
-                $('#hidden-type').val(target);
-                $('#export-form').submit();
-                $('#hidden-type').val('');
-                break;
-        }
+    $(document).ready(function() {
+        $('#export-to-excel').bind("click", function() {
+            var target = $(this).attr('id');
+            var reportType = $('#report-type').val();
+            
+            switch(target) {
+                case 'export-to-excel':
+                    $('#hidden-type').val(target);
+                    $('#hidden-report-type').val(reportType);
+                    $('#export-form').submit();
+                    $('#hidden-type').val('');
+                    break;
+            }
+        });
     });
-});
-
 </script>

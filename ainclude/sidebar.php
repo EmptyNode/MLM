@@ -50,6 +50,14 @@
                         </a>
                     </li>
                     <li>
+                        <a href="./withdraw.php">
+                            <span class="icon">
+                                <ion-icon name="cash-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Withdraw Request </span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="./newrequests.php">
                             <span class="icon">
                                 <ion-icon name="person-add-outline"></ion-icon>
@@ -63,6 +71,14 @@
                                 <ion-icon name="book-outline"></ion-icon>
                             </span>
                             <span class="title"> Reports </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./settings.php">
+                            <span class="icon">
+                                <ion-icon name="settings-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Settings </span>
                         </a>
                     </li>
                     <li>
