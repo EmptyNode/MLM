@@ -34,6 +34,27 @@ if (isset($_POST['register'])) {
         exit;
     }
 
+    if (!empty($referralCode)) {
+        // Find the user with the given referral code
+        $referralSql = "SELECT uId FROM user_tbl WHERE auto_referralCode = '$referralCode'";
+        $referralResult = $conn->query($referralSql);
+
+        if ($referralResult === false) {
+            echo "Error executing query: " . $conn->error;
+            exit;
+        }
+
+        $referralRow = $referralResult->fetch_assoc();
+        if ($referralResult->num_rows > 0) {
+            $parentId = $referralRow['uId'];
+        } else {
+            echo "Error: Referral code not found.";
+            exit;
+        }
+    } else {
+        $parentId = 0; // No referral code provided, set parent_id to 0
+    }
+
     // Generate a unique 6-digit alphanumeric referral code
     $auto_referralCode = generateReferralCode($conn);
 
@@ -42,7 +63,7 @@ if (isset($_POST['register'])) {
 
     // SQL query to insert data into the database
     // $sql = "INSERT INTO user_tbl (firstName, lastName, addr, phone, aadhaar, mobile, whatsApp, referralCode, auto_referralCode, password) VALUES ('$firstName', '$lastName', '$addr', '$phone', '$aadhaar', '$mobile', '$whatsApp', '$referralCode', '$auto_referralCode', '$hashedPassword')";
-    $sql = "INSERT INTO user_tbl (mobile, referralCode, auto_referralCode, password) VALUES ('$mobile', '$referralCode', '$auto_referralCode', '$hashedPassword')";
+    $sql = "INSERT INTO user_tbl (mobile, referralCode, auto_referralCode, password, parent_id) VALUES ('$mobile', '$referralCode', '$auto_referralCode', '$hashedPassword', '$parentId')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Registration successful.";

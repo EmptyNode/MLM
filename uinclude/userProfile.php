@@ -155,8 +155,10 @@ include('../uinclude/php/cal_profile_percentage.php');
                             <div class="row mb-3">
                             <div class="col-4 fw-bold">Payment Status:</div>
                             <div class="col-8">
-                                <?php if ($row['approval_status'] == 'completed'): ?>
-                                    <span class="text-success">Payment Completed</span>
+                                <?php if ($row['approval_status'] == 0): ?>
+                                    <span class="text-error"> Approval needed</span>
+                                <?php elseif ($row['payment_status'] == 1): ?>
+                                    <span class="text-success">Payment done</span>
                                 <?php else: ?>
                                     <button class="btn btn-success" id="paymentButton" onclick="redirectToPayment()">Make Payment</button>
                                 <?php endif; ?>

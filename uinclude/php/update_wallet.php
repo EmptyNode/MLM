@@ -14,11 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
     // Validate and sanitize the input if needed
 
     // Use prepared statements to prevent SQL injection
-    $sql = $conn->prepare("INSERT INTO wallet (uId, amount) VALUES (?, ?)");
+    $sql = $conn->prepare("INSERT INTO wallet (uId, amount, details) VALUES (?, ?, 'joining bonus')");
     $sql->bind_param("id", $userId, $amount);
 
     if ($sql->execute()) {
         echo "Payment successful.";
+         // Update payment status in another table
+         $updatePaymentStatusQuery = $conn->prepare("UPDATE user_tbl SET payment_status = 1 WHERE uId = ?");
+         $updatePaymentStatusQuery->bind_param("i", $userId);
+         $updatePaymentStatusQuery->execute();
 
         // Find userId based on referral code
         $findUserIdQuery = $conn->prepare("SELECT uId FROM user_tbl WHERE auto_referralcode = ?");
@@ -56,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
                         $row = $res->fetch_assoc();
                         $usrId = $row['uId'];
                         $referralCode = $row['referralCode'];
-                        $bonusAmount = ($i === 0) ? 20 : 0.53; // Assign different bonus amounts based on the level
+                        $bonusAmount = ($i === 0) ? 0 : 0.53; // Assign different bonus amounts based on the level
 
                         // Insert a new row into your wallet table
                         // Adding the calculated bonus amount to the user's wallet
-                        $insertWalletQuery = $conn->prepare("INSERT INTO wallet (uId, amount) VALUES (?, ?)");
+                        $insertWalletQuery = $conn->prepare("INSERT INTO wallet (uId, amount, details) VALUES (?, ?, 'child referral bonus')");
                         $insertWalletQuery->bind_param("id", $usrId, $bonusAmount);
 
                         echo "Executing query: $InsertWalletQuery<br>"; // Debug statement
@@ -92,6 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
     $sql->close();
     $findUserIdQuery->close();
     $insertWalletQuery->close();
+    $updatePaymentStatusQuery->close();
 } else {
     // Handle non-POST requests
     echo "Invalid request method";

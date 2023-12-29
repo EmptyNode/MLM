@@ -48,6 +48,11 @@ if (isset($_SESSION['uId'])) {
 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include jstree -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" charset="utf-8"></script>
 </head>
 
@@ -136,7 +141,7 @@ if (isset($_SESSION['uId'])) {
 
 
                     <!-- userImage -->
-                    <div style="display: flex; align-items: center;">
+                    <div id="walletInfo" style="display: flex; align-items: center;">
                     <?php
 // Fetch rows for the particular user
 $query = "SELECT amount FROM wallet WHERE uId = '$user_id'";
@@ -159,20 +164,40 @@ if (mysqli_num_rows($result) > 0) {
 // echo "Total Amount for User ID $user_id: $total_amount";
 ?>
                         <!-- Wallet Icon (Outlined and Increased Size) -->
-                        <ion-icon name="wallet-outline" style="font-size: 2em;"></ion-icon>
+                        <ion-icon name="wallet-outline" style="font-size: 2em; cursor:pointer"></ion-icon>
 
                         <!-- Amount Text -->
                         <p style="margin-left: 5px;"><?php echo $total_amount; ?></p>
                     </div>
+                    <ion-icon id="treeIcon"  name="contract-outline" style="font-size: 2em"></ion-icon>
                     <div class="user" style="background-color: <?php echo $profilepic?>; border-radius: 50%;"></div>
 
 
 
-
                 </div>
+
+                
 
 
             <!-- </div>
         </div>
     </div>
 </body> -->
+
+<script>
+$(document).ready(function() {
+    // Attach a click event handler to the walletInfo element
+    $('#walletInfo').click(function() {
+        // Assuming you want to navigate to a new page (replace 'new_page.html' with your actual page)
+        window.location.href = ' /MLM/uinclude/transactions.php';
+        
+        // If you want to open a new tab/window, use the following instead
+        // window.open('new_page.html', '_blank');
+    });
+
+    $("#treeIcon").click(function () {
+    // Redirect to treeview.php
+    window.location.href = 'treeviewuser.php';
+    });
+});
+</script>

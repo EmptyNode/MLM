@@ -22,7 +22,11 @@ include('../ainclude/sidebar.php');
     }
 
     ?>
-
+    <div id="toggleIcons" class="toggle-icons">
+        <ion-icon  id="tableIcon" name="grid-outline"></ion-icon>
+        <ion-icon id="treeIcon"  name="contract-outline"></ion-icon>
+    </div>
+    <div id="tableView" class="view-container" >
     <div class="table-responsive" style="height: 70vh; overflow-y: auto;">
         <table class="table">
             <div class=" p-1">
@@ -44,7 +48,7 @@ include('../ainclude/sidebar.php');
                         <th scope="col">Bank Name</th>
                         <th scope="col">Account No.</th>
                         <th scope="col">IFSC Code</th> -->
-                        <th scope="col">Refferal Code</th>
+                        <th scope="col">Reffered By</th>
                         <th scope="col">Profile Img</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -121,7 +125,22 @@ include('../ainclude/sidebar.php');
                             <? //php echo $row['ifsc_code'] ?>
                         </td> -->
                                 <td>
-                                    <?php echo $row['auto_referralCode'] ?>
+                                    <?php
+                                    // echo $row['auto_referralCode'];
+
+                                    // Fetch referring user's uId based on auto_referralCode
+                                    $referralCode = $row['referralCode'];
+                                    $referringUserQuery = "SELECT uId FROM user_tbl WHERE auto_referralCode = '$referralCode'";
+                                    $referringUserResult = mysqli_query($conn, $referringUserQuery);
+
+                                    if ($referringUserResult && mysqli_num_rows($referringUserResult) > 0) {
+                                        $referringUser = mysqli_fetch_assoc($referringUserResult);
+                                        $referringUserId = $referringUser['uId'];
+                                        echo " (Referred by User ID: $referringUserId)";
+                                    } else {
+                                        echo " (Not Referred)";
+                                    }
+                                    ?>
                                 </td>
 
                                 <td><img src="<?php echo $row['profile_img'] ?>" alt="Service Image" width="50"></td>
@@ -316,6 +335,8 @@ include('../ainclude/sidebar.php');
             </div>
         </table>
     </div>
+    </div>
+  
 </div>
 
 <?php include('../ainclude/jscript.php'); ?>
@@ -396,7 +417,70 @@ include('../ainclude/sidebar.php');
         $("#fullImage").attr("src", fullImagePath);
         $("#fullImageModal").modal("show");
     });
+
+    $(document).ready(function () {
+        // Toggle between tree and table views
+        $("#treeIcon").click(function () {
+    // Redirect to treeview.php
+    window.location.href = 'treeview.php';
+});
+
+        $("#tableIcon").click(function () {
+            window.location.href = 'dashboard.php';
+        });
+
+        // Close the view when clicking outside
+        $(document).on("click", function (event) {
+            if (!$(event.target).closest(".view-container, #toggleIcons").length) {
+                // If the clicked element is outside the view container and the toggleIcons container
+                $("#treeView, #tableView").hide();
+                $("#toggleIcons ion-icon").removeClass("active");
+            }
+        });
+
+        // Prevent closing when clicking inside the view container
+        $(".view-container").on("click", function (event) {
+            event.stopPropagation(); // Prevent the click event from reaching the document
+        });
+    });
+
 </script>
+<style>
+    
+    .toggle-icons {
+        text-align: right;
+        z-index: 1000;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    ion-icon {
+        font-size: 24px;
+        cursor: pointer;
+        /* color: #555; Default color */
+    }
+
+    ion-icon.active {
+        color: #007bff; /* Active color */
+    }
+
+    ion-icon:hover {
+        color: #007bff; /* Hover color */
+    }
+    #treeView {
+        margin-left: 20px;
+    }
+
+    #treeView ul {
+        list-style-type: none;
+    }
+
+    #treeView li {
+        margin-bottom: 5px;
+    }
+</style>
 
 
 <?php include('../ainclude/footer.php'); ?>

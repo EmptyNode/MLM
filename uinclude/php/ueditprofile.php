@@ -82,6 +82,9 @@ if (isset($_POST['update_profile'])) {
                 imagejpeg($source, $targetPath, 60); // Compression quality of 60%
             } elseif ($imageFileType === "png") {
                 $source = imagecreatefrompng($image);
+                if (!$source) {
+                 die("Error creating PNG image");
+            }
                 imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
             }
 

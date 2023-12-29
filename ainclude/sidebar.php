@@ -52,9 +52,17 @@
                     <li>
                         <a href="./newrequests.php">
                             <span class="icon">
-                                <ion-icon name="person-outline"></ion-icon>
+                                <ion-icon name="person-add-outline"></ion-icon>
                             </span>
                             <span class="title">New Request</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./getreports.php">
+                            <span class="icon">
+                                <ion-icon name="book-outline"></ion-icon>
+                            </span>
+                            <span class="title"> Reports </span>
                         </a>
                     </li>
                     <li>
