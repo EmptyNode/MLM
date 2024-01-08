@@ -13,9 +13,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
 
     // Validate and sanitize the input if needed
 
+    // Function to get parent information recursively
+function getParentInfo($userId, $conn, &$hierarchy, $maxSize) {
+    // Fetch user information based on userId
+    $query = "SELECT uId, parent_id FROM user_tbl WHERE uId = $userId";
+    $result = mysqli_query($conn, $query);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $userInfo = array('uId' => $row['uId'], 'parent_id' => $row['parent_id']);
+
+        // If parent_id is not 0 and hierarchy size is less than maxSize, recursively get parent information
+        if ($row['parent_id'] != 0 && count($hierarchy) < $maxSize) {
+            $parentInfo = getParentInfo($row['parent_id'], $conn, $hierarchy, $maxSize);
+            $userInfo['parentInfo'] = $parentInfo;
+        }
+
+        // Add the user information to the hierarchy array
+        $hierarchy[] = $userInfo;
+    }
+
+    return $userInfo;
+}
+
+// Your database connection code here
+// $conn = mysqli_connect("localhost", "username", "password", "database");
+
+// Assuming you have the current user's ID
+$currentUser = $userId; // Replace with the actual userId
+
+// Set the maximum hierarchy size you want to retrieve
+$maxHierarchySize = 10;
+
+// Initialize the hierarchy array
+$userHierarchy = array();
+
+// Call the function to get parent information
+getParentInfo($currentUser, $conn, $userHierarchy, $maxHierarchySize);
+
+// Calculate the hierarchy size
+$hierarchySize = count($userHierarchy);
+
+// Output the result
+echo "User Hierarchy: ";
+print_r($userHierarchy);
+echo "Hierarchy Size: $hierarchySize";
+
+$settings_query = "SELECT jb, md FROM settings";
+$set_res = mysqli_query($conn, $settings_query);
+if ($set_res && mysqli_num_rows($set_res) > 0) {
+    $setrow = mysqli_fetch_assoc($set_res);
+    $jb = $setrow['jb'];
+    $md = $setrow['md'];
+}
+
     // Use prepared statements to prevent SQL injection
     $sql = $conn->prepare("INSERT INTO wallet (uId, amount, details) VALUES (?, ?, 'joining bonus')");
-    $sql->bind_param("id", $userId, $amount);
+    $sql->bind_param("id", $userId, $jb);
 
     if ($sql->execute()) {
         echo "Payment successful.";
@@ -36,8 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
 
             // Insert a new row into your wallet table for the referrer
             $insertWalletQuery = $conn->prepare("INSERT INTO wallet (uId, amount) VALUES (?, ?)");
-            $insertWalletQuery->bind_param("id", $usrId, $amount);
+            $insertWalletQuery->bind_param("id", $usrId, $jb);
 
+            $dis_am = $md / $hierarchySize;
             if ($insertWalletQuery->execute()) {
                 echo "Payment successful.";
 
@@ -60,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['payment'])) {
                         $row = $res->fetch_assoc();
                         $usrId = $row['uId'];
                         $referralCode = $row['referralCode'];
-                        $bonusAmount = ($i === 0) ? 0 : 0.53; // Assign different bonus amounts based on the level
+                        $bonusAmount = ($i === 0) ? 0 : $dis_am; // Assign different bonus amounts based on the level
 
                         // Insert a new row into your wallet table
                         // Adding the calculated bonus amount to the user's wallet

@@ -53,584 +53,86 @@ if (isset($_POST['update_profile'])) {
 
     $user_id = $_SESSION['uId'];
 
-
-    if (
-        $_FILES['verify_image']['error'] === UPLOAD_ERR_OK && isset($_FILES['verify_image']) &&
-        $_FILES['bank_image']['error'] === UPLOAD_ERR_OK && isset($_FILES['bank_image']) &&
-        $_FILES['image']['error'] === UPLOAD_ERR_OK && isset($_FILES['image'])
-    ) {
-
-        // if (!empty($_FILES['verify_image']['name'])) {
-        $imageFileType = strtolower(pathinfo($_FILES['verify_image']['name'], PATHINFO_EXTENSION));
-        // Check if the uploaded file is an image
-        $allowedFormats = array("jpg", "jpeg", "png", "pdf");
-        if (in_array($imageFileType, $allowedFormats)) {
-            $image = $_FILES['verify_image']['tmp_name'];
-
-            // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-            //$compressedImage = $datetime . $_FILES['verify_image']['name'];
-
-            // Generate unique filename
-            // $originalFileName = $_FILES['image']['name'];
-            $originalFileName = $_FILES['verify_image']['name'];
-            $uniqueFileName = generateUniqueFileName($originalFileName);
-
-            $targetPath = "../userUploads/verificationImg/" . $uniqueFileName; // Set the target path            
-
-            if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
-                $source = imagecreatefromjpeg($image);
-                imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-            } elseif ($imageFileType === "png") {
-                $source = imagecreatefrompng($image);
-                if (!$source) {
-                 die("Error creating PNG image");
-            }
-                imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-            }
-
-            $verifyimgtargetPath = '/uinclude/userUploads/verificationImg/' . $uniqueFileName;
-
-
-            $bankimageFileType = strtolower(pathinfo($_FILES['bank_image']['name'], PATHINFO_EXTENSION));
-            // Check if the uploaded file is an image
-            $bankallowedFormats = array("jpg", "jpeg", "png", "pdf");
-            if (in_array($bankimageFileType, $bankallowedFormats)) {
-                $image = $_FILES['bank_image']['tmp_name'];
-
-                // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-                //$compressedImage = $datetime . $_FILES['bank_image']['name'];
-
-                // Generate unique filename
-                // $originalFileName = $_FILES['image']['name'];
-                $originalFileName = $_FILES['bank_image']['name'];
-                $uniqueFileName = generateUniqueFileName($originalFileName);
-
-                $targetPath = "uinclude/bankImg/" . $uniqueFileName; // Set the target path            
-
-                if ($bankimageFileType === "jpeg" || $bankimageFileType === "jpg") {
-                    $source = imagecreatefromjpeg($image);
-                    imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-                } elseif ($bankimageFileType === "png") {
-                    $source = imagecreatefrompng($image);
-                    imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-                }
-
-                $bankimgtargetPath = $uniqueFileName;
-
-
-                $profileimageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-
-                $profileallowedFormats = array("jpg", "jpeg", "png");
-                if (in_array($profileimageFileType, $profileallowedFormats)) {
-                    $image = $_FILES['image']['tmp_name'];
-
-
-                    // Get the current directory path
-                    // $currentDir = __DIR__;
-                    //$datetime = date('Y-m-d H:i:s') . '_';
-                    //$compr = 'compre_';
-
-                    // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-                    // $compressedImage = $datetime . $_FILES['image']['name'];
-                    // $uniqueFileName = 'compressed_' . $_FILES['image']['name'];
-
-                    // Generate unique filename
-                    // $originalFileName = $_FILES['image']['name'];
-                    $originalFileName = $_FILES['image']['name'];
-                    $uniqueFileName = generateUniqueFileName($originalFileName);
-
-                    $targetPath = "../userUploads/profileImg/" . $uniqueFileName; // Set the target path            
-
-
-
-                    if ($profileimageFileType === "jpeg" || $profileimageFileType === "jpg") {
-                        $source = imagecreatefromjpeg($image);
-                        imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-                    } elseif ($profileimageFileType === "png") {
-                        $source = imagecreatefrompng($image);
-                        imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-                    }
-
-                    $profileimagetargetPath = '/uinclude/userUploads/profileImg/' . $uniqueFileName;
-
-
-                    // Update data into the table with Image
-                    $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
-                    phone = ?, whatsApp = ?, email = ?, dob = ?, pan = ?, 
-                    aadhaar = ?, bank_name = ?, ac_number = ?,  ifsc_code = ?, 
-                    verification_img = ?, bank_img = ?, profile_img = ? WHERE uId = ?";
-
-                    if (!$conn) {
-                        die("Connection failed: " . mysqli_connect_error());
-                    } else {
-                        $stmt = $conn->prepare($sql);
-                    }
-                    if ($stmt) {
-                        mysqli_stmt_bind_param(
-                            $stmt,
-                            "sssssssssssssssi",
-                            $firstName,
-                            $lastName,
-                            $addr,
-                            $phone,
-                            $whatsApp,
-                            $email,
-                            $dob,
-                            $pan,
-                            $aadhaar,
-                            $bank_name,
-                            $ac_number,
-                            $ifsc_code,
-                            $verifyimgtargetPath,
-                            $bankimgtargetPath,
-                            $profileimagetargetPath,
-                            $user_id
-                        );
-                        if (mysqli_stmt_execute($stmt)) {
-                            $_SESSION['status'] = "Profile Update successfully With Profile Image";
-                            header('Location: ../userProfile.php');
-                            exit;
-                        } else {
-                            echo "Execution Error: " . $stmt->error;
-                        }
-                        $stmt->close();
-                    } else {
-                        echo "Error: " . $conn->error();
-                    }
-
-                    // $conn->close();
-                    mysqli_stmt_close($stmt);
-
-                } else {
-                    echo "Invalid image format. Allowed formats: jpg, jpeg, png, pdf.";
-                }
-
-            }
-        }
+    // Function to generate a unique filename
+    function generateUniqueFileName($originalFileName, $index = '')
+    {
+        $datetime = date('YmdHis'); // Using YmdHis format for a unique filename
+        $randomString = substr(md5(mt_rand()), 0, 5);
+        $extension = pathinfo($originalFileName, PATHINFO_EXTENSION); // Get the file extension
+        $originalFileNameWithoutExtension = pathinfo($originalFileName, PATHINFO_FILENAME); // Get the original filename without extension
+        return $datetime . '_' . $randomString . '_' . $index . '_' . $originalFileNameWithoutExtension . '.' . $extension;
     }
 
+    // Function to handle image uploads
+    function handleImageUpload($file, $index, $targetDirectory)
+    {
+        global $conn;
 
-    // Handle Verification Images
-    if (
-        $_FILES['verify_image']['error'] === UPLOAD_ERR_OK && isset($_FILES['verify_image']) &&
-        $_FILES['bank_image']['error'] === UPLOAD_ERR_OK && isset($_FILES['bank_image'])
-    ) {
+        $originalFileName = $file['name'];
+        $uniqueFileName = generateUniqueFileName($originalFileName, $index);
+        $targetPath = $targetDirectory . $uniqueFileName;
 
-        // if (!empty($_FILES['verify_image']['name'])) {
-        $imageFileType = strtolower(pathinfo($_FILES['verify_image']['name'], PATHINFO_EXTENSION));
-        // Check if the uploaded file is an image
-        $allowedFormats = array("jpg", "jpeg", "png", "pdf");
-        if (in_array($imageFileType, $allowedFormats)) {
-            $image = $_FILES['verify_image']['tmp_name'];
+        move_uploaded_file($file['tmp_name'], $targetPath);
 
-            // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-            //$compressedImage = $datetime . $_FILES['verify_image']['name'];
-
-            // Generate unique filename
-            // $originalFileName = $_FILES['image']['name'];
-            $originalFileName = $_FILES['verify_image']['name'];
-            $uniqueFileName = generateUniqueFileName($originalFileName);
-
-            $targetPath = "/MLM/uinclude/userUploads/verificationImg/" . $uniqueFileName; // Set the target path            
-
-            if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
-                $source = imagecreatefromjpeg($image);
-                imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-            } elseif ($imageFileType === "png") {
-                $source = imagecreatefrompng($image);
-                imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-            }
-
-            $verifyimgtargetPath = '/MLM/uinclude/userUploads/verificationImg/' . $uniqueFileName;
-            // $verifyimgtargetPath = $targetPath;
-
-
-            $bankimageFileType = strtolower(pathinfo($_FILES['bank_image']['name'], PATHINFO_EXTENSION));
-            // Check if the uploaded file is an image
-            $bankallowedFormats = array("jpg", "jpeg", "png", "pdf");
-            if (in_array($bankimageFileType, $bankallowedFormats)) {
-                $image = $_FILES['bank_image']['tmp_name'];
-
-                // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-                //$compressedImage = $datetime . $_FILES['bank_image']['name'];
-
-                // Generate unique filename
-                // $originalFileName = $_FILES['image']['name'];
-                $originalFileName = $_FILES['bank_image']['name'];
-                $uniqueFileName = generateUniqueFileName($originalFileName);
-
-                $targetPath = "../userUploads/bankImg/" . $uniqueFileName; // Set the target path            
-
-                if ($bankimageFileType === "jpeg" || $bankimageFileType === "jpg") {
-                    $source = imagecreatefromjpeg($image);
-                    imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-                } elseif ($bankimageFileType === "png") {
-                    $source = imagecreatefrompng($image);
-                    imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-                }
-
-                $bankimgtargetPath = '../userUploads/bankImg/' . $uniqueFileName;
-
-
-                // Update data into the table with Image
-                $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
-                phone = ?, whatsApp = ?, email = ?, dob = ?, pan = ?, 
-                aadhaar = ?, bank_name = ?, ac_number = ?,  ifsc_code = ?, 
-                bank_img = ?, verification_img = ? WHERE uId = ?";
-
-                if (!$conn) {
-                    die("Connection failed: " . mysqli_connect_error());
-                } else {
-                    $stmt = $conn->prepare($sql);
-                }
-                if ($stmt) {
-                    mysqli_stmt_bind_param(
-                        $stmt,
-                        "ssssssssssssssi",
-                        $firstName,
-                        $lastName,
-                        $addr,
-                        $phone,
-                        $whatsApp,
-                        $email,
-                        $dob,
-                        $pan,
-                        $aadhaar,
-                        $bank_name,
-                        $ac_number,
-                        $ifsc_code,
-                        $verifyimgtargetPath,
-                        $bankimgtargetPath,
-                        $user_id
-                    );
-                    if (mysqli_stmt_execute($stmt)) {
-                        $_SESSION['status'] = "Profile Update successfully With Profile Image";
-                        header('Location: ../userProfile.php');
-                        exit;
-                    } else {
-                        echo "Execution Error: " . $stmt->error;
-                    }
-                    $stmt->close();
-                } else {
-                    echo "Error: " . $conn->error();
-                }
-
-                // $conn->close();
-                mysqli_stmt_close($stmt);
-
-            } else {
-                echo "Invalid image format. Allowed formats: jpg, jpeg, png, pdf.";
-            }
-
-        }
+        return $targetPath;
     }
 
+    // Handle Verification Image
+    $verifyImgPath = handleImageUpload($_FILES['verify_image'], 'verify', '../userUploads/profile/');
 
-    // Handle Verification Images
-    if ($_FILES['verify_image']['error'] === UPLOAD_ERR_OK && isset($_FILES['verify_image'])) {
+    // Handle Bank Image
+    $bankImgPath = handleImageUpload($_FILES['bank_image'], 'bank', '../userUploads/profile/');
 
-        // if (!empty($_FILES['verify_image']['name'])) {
-        $imageFileType = strtolower(pathinfo($_FILES['verify_image']['name'], PATHINFO_EXTENSION));
-        // Check if the uploaded file is an image
-        $allowedFormats = array("jpg", "jpeg", "png", "pdf");
-        if (in_array($imageFileType, $allowedFormats)) {
-            $image = $_FILES['verify_image']['tmp_name'];
+    // Handle Profile Image
+    $profileImgPath = handleImageUpload($_FILES['image'], 'profile', '../userUploads/profile/');
 
-            // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-            // $compressedImage = $datetime . $_FILES['verify_image']['name'];
-
-            // Generate unique filename
-            // $originalFileName = $_FILES['image']['name'];
-            $originalFileName = $_FILES['verify_image']['name'];
-            $uniqueFileName = generateUniqueFileName($originalFileName);
-
-            $targetPath = "../userUploads/verificationImg/" . $uniqueFileName; // Set the target path            
-
-            if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
-                $source = imagecreatefromjpeg($image);
-                imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-            } elseif ($imageFileType === "png") {
-                $source = imagecreatefrompng($image);
-                imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-            }
-
-            $verifyimgtargetPath = '/uinclude/userUploads/verificationImg/' . $uniqueFileName;
-
-            // Update data into the table with Image
-            $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
+    // Update data into the table with Images
+    $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
             phone = ?, whatsApp = ?, email = ?, dob = ?, pan = ?, 
             aadhaar = ?, bank_name = ?, ac_number = ?,  ifsc_code = ?, 
-            verification_img = ? WHERE uId = ?";
+            verification_img = ?, bank_img = ?, profile_img = ? WHERE uId = ?";
 
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            } else {
-                $stmt = $conn->prepare($sql);
-            }
-            if ($stmt) {
-                mysqli_stmt_bind_param(
-                    $stmt,
-                    "sssssssssssssi",
-                    $firstName,
-                    $lastName,
-                    $addr,
-                    $phone,
-                    $whatsApp,
-                    $email,
-                    $dob,
-                    $pan,
-                    $aadhaar,
-                    $bank_name,
-                    $ac_number,
-                    $ifsc_code,
-                    $verifyimgtargetPath,
-                    $user_id
-                );
-                if (mysqli_stmt_execute($stmt)) {
-                    $_SESSION['status'] = "Profile Update successfully With Profile Image";
-                    header('Location: ../userProfile.php');
-                    exit;
-                } else {
-                    echo "Execution Error: " . $stmt->error;
-                }
-                $stmt->close();
-            } else {
-                echo "Error: " . $conn->error();
-            }
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
 
-            // $conn->close();
-            mysqli_stmt_close($stmt);
+    $stmt = $conn->prepare($sql);
 
+    if ($stmt) {
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sssssssssssssssi",
+            $firstName,
+            $lastName,
+            $addr,
+            $phone,
+            $whatsApp,
+            $email,
+            $dob,
+            $pan,
+            $aadhaar,
+            $bank_name,
+            $ac_number,
+            $ifsc_code,
+            $verifyImgPath,
+            $bankImgPath,
+            $profileImgPath,
+            $user_id
+        );
+
+        if (mysqli_stmt_execute($stmt)) {
+            $_SESSION['status'] = "Profile Update successfully With Profile Image";
+            header('Location: ../userProfile.php');
+            exit;
         } else {
-            echo "Invalid image format. Allowed formats: jpg, jpeg, png, pdf.";
+            echo "Execution Error: " . $stmt->error;
         }
 
-        // Handle Bank Images
-    } else if ($_FILES['bank_image']['error'] === UPLOAD_ERR_OK && isset($_FILES['bank_image'])) {
-
-        // if (!empty($_FILES['bank_image']['name'])) {
-        $imageFileType = strtolower(pathinfo($_FILES['bank_image']['name'], PATHINFO_EXTENSION));
-        // Check if the uploaded file is an image
-        $allowedFormats = array("jpg", "jpeg", "png", "pdf");
-        if (in_array($imageFileType, $allowedFormats)) {
-            $image = $_FILES['bank_image']['tmp_name'];
-
-            // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-            $compressedImage = $datetime . $_FILES['bank_image']['name'];
-
-            // Generate unique filename
-            // $originalFileName = $_FILES['image']['name'];
-            $originalFileName = $_FILES['bank_image']['name'];
-            $uniqueFileName = generateUniqueFileName($originalFileName);
-
-            $targetPath = "uinclude/userUploads/bankImg/" . $uniqueFileName; // Set the target path            
-
-            if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
-                $source = imagecreatefromjpeg($image);
-                imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-            } elseif ($imageFileType === "png") {
-                $source = imagecreatefrompng($image);
-                imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-            }
-
-            $bankimgtargetPath = '/uinclude/userUploads/bankImg/' . $uniqueFileName;
-
-            // Update data into the table with Image
-            $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
-            phone = ?, whatsApp = ?, email = ?, dob = ?, pan = ?, 
-            aadhaar = ?, bank_name = ?, ac_number = ?,  ifsc_code = ?, 
-            bank_img = ? WHERE uId = ?";
-
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            } else {
-                $stmt = $conn->prepare($sql);
-            }
-            if ($stmt) {
-                mysqli_stmt_bind_param(
-                    $stmt,
-                    "sssssssssssssi",
-                    $firstName,
-                    $lastName,
-                    $addr,
-                    $phone,
-                    $whatsApp,
-                    $email,
-                    $dob,
-                    $pan,
-                    $aadhaar,
-                    $bank_name,
-                    $ac_number,
-                    $ifsc_code,
-                    $bankimgtargetPath,
-                    $user_id
-                );
-                if (mysqli_stmt_execute($stmt)) {
-                    $_SESSION['status'] = "Profile Update successfully With Profile Image";
-                    header('Location: ../userProfile.php');
-                    exit;
-                } else {
-                    echo "Execution Error: " . $stmt->error;
-                }
-                $stmt->close();
-            } else {
-                echo "Error: " . $conn->error();
-            }
-
-            // $conn->close();
-            mysqli_stmt_close($stmt);
-
-        } else {
-            echo "Invalid image format. Allowed formats: jpg, jpeg, png, pdf.";
-        }
-
-        // Check if the image file was uploaded without errors
-
-    } else if ($_FILES['image']['error'] === UPLOAD_ERR_OK && isset($_FILES['image'])) {
-        $imageFileType = strtolower(pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION));
-
-        // Check if the uploaded file is an image
-        $allowedFormats = array("jpg", "jpeg", "png", "pdf");
-        if (in_array($imageFileType, $allowedFormats)) {
-            $image = $_FILES['image']['tmp_name'];
-
-
-            // Get the current directory path
-            // $currentDir = __DIR__;
-            //$datetime = date('Y-m-d H:i:s') . '_';
-            //$compr = 'compre_';
-
-            // Compress the image using imagejpeg() for JPEG images and imagepng() for PNG images
-            // $compressedImage = $datetime . $_FILES['image']['name'];
-            // $uniqueFileName = 'compressed_' . $_FILES['image']['name'];
-
-            // Generate unique filename
-            // $originalFileName = $_FILES['image']['name'];
-            $originalFileName = $_FILES['image']['name'];
-            $uniqueFileName = generateUniqueFileName($originalFileName);
-
-            $targetPath = "../userUploads/profileImg/" . $uniqueFileName; // Set the target path            
-
-
-
-            if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
-                $source = imagecreatefromjpeg($image);
-                imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-            } elseif ($imageFileType === "png") {
-                $source = imagecreatefrompng($image);
-                imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-            }
-
-            $imagetargetPath = '/uinclude/userUploads/profileImg/' . $uniqueFileName;
-
-
-            // Update data into the table with Image
-            $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
-                phone = ?, whatsApp = ?, email = ?, dob = ?, pan = ?, 
-                aadhaar = ?, bank_name = ?, ac_number = ?,  ifsc_code = ?, 
-                profile_img = ? WHERE uId = ?";
-
-            if (!$conn) {
-                die("Connection failed: " . mysqli_connect_error());
-            } else {
-                $stmt = $conn->prepare($sql);
-            }
-            if ($stmt) {
-                mysqli_stmt_bind_param(
-                    $stmt,
-                    "sssssssssssssi",
-                    $firstName,
-                    $lastName,
-                    $addr,
-                    $phone,
-                    $whatsApp,
-                    $email,
-                    $dob,
-                    $pan,
-                    $aadhaar,
-                    $bank_name,
-                    $ac_number,
-                    $ifsc_code,
-                    $imagetargetPath,
-                    $user_id
-                );
-                if (mysqli_stmt_execute($stmt)) {
-                    $_SESSION['status'] = "Profile Update successfully With Profile Image";
-                    header('Location: ../userProfile.php');
-                    exit;
-                } else {
-                    echo "Execution Error: " . $stmt->error;
-                }
-                $stmt->close();
-            } else {
-                echo "Error: " . $conn->error();
-            }
-
-            // $conn->close();
-            mysqli_stmt_close($stmt);
-        } else {
-            echo "Invalid image format. Allowed formats: jpg, jpeg, png, gif.";
-        }
+        $stmt->close();
     } else {
-        // echo "Error uploading image: " . $_FILES['image']['error'];
-
-        // Update data into the table with Image
-        $sql = "UPDATE user_tbl SET firstName = ?,  lastName = ?, addr = ?, 
-            phone = ?, whatsApp = ?, email = ?, dob = ?, pan = ?, 
-            aadhaar = ?, bank_name = ?, ac_number = ?,  ifsc_code = ? WHERE uId = ?";
-
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        } else {
-            $stmt = $conn->prepare($sql);
-        }
-        if ($stmt) {
-            mysqli_stmt_bind_param(
-                $stmt,
-                "ssssssssssssi",
-                $firstName,
-                $lastName,
-                $addr,
-                $phone,
-                $whatsApp,
-                $email,
-                $dob,
-                $pan,
-                $aadhaar,
-                $bank_name,
-                $ac_number,
-                $ifsc_code,
-                $user_id
-            );
-            if (mysqli_stmt_execute($stmt)) {
-                $_SESSION['status'] = "Profile Update successfully";
-                header('Location: ../userProfile.php');
-                exit;
-            } else {
-                echo "Execution Error: " . $stmt->error;
-            }
-            $stmt->close();
-        } else {
-            echo "Error: " . $conn->error();
-        }
-
-        // $conn->close();
-        mysqli_stmt_close($stmt);
+        echo "Error: " . $conn->error;
     }
 
-
+    $conn->close();
 }
-
-
-
-
-function generateUniqueFileName($originalFileName, $index = '')
-{
-    $datetime = date('YmdHis'); // Using YmdHis format for a unique filename
-    $randomString = substr(md5(mt_rand()), 0, 5);
-    $extension = pathinfo($originalFileName, PATHINFO_EXTENSION); // Get the file extension
-    $originalFileNameWithoutExtension = pathinfo($originalFileName, PATHINFO_FILENAME); // Get the original filename without extension
-    return $datetime . '_' . $randomString . '_' . $index . '_' . $originalFileNameWithoutExtension . '.' . $extension;
-}
-
 ?>

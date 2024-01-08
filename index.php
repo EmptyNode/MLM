@@ -61,8 +61,7 @@ ob_start();
                             <div class="enroll-button-container">
                                 <img src="images/c1.jpg" alt="Service-1">
                                 <div class="carousel-overlay"></div>
-                                <a href="#" class="enroll-button" data-bs-toggle="modal"
-                                    data-bs-target="#signupModal">Enroll</a>
+                                <a href="#" class="enroll-button" data-bs-toggle="modal" data-bs-target="#signupModal">Enroll</a>
                             </div>
                             <!-- <div class="carousel-caption">
                                     <h3>Service-1</h3>
@@ -73,8 +72,7 @@ ob_start();
                             <div class="enroll-button-container">
                                 <img src="images/c2.jpg" alt="Service-2">
                                 <div class="carousel-overlay"></div>
-                                <a href="#" class="enroll-button" data-bs-toggle="modal"
-                                    data-bs-target="#signupModal">Enroll</a>
+                                <a href="#" class="enroll-button" data-bs-toggle="modal" data-bs-target="#signupModal">Enroll</a>
                             </div>
                             <!-- <div class="carousel-caption bg-white text-dark">
                                     <h3>Service-2</h3>
@@ -85,8 +83,7 @@ ob_start();
                             <div class="enroll-button-container">
                                 <img src="images/c3.jpg" alt="Service-3">
                                 <div class="carousel-overlay"></div>
-                                <a href="#" class="enroll-button" data-bs-toggle="modal"
-                                    data-bs-target="#signupModal">Enroll</a>
+                                <a href="#" class="enroll-button" data-bs-toggle="modal" data-bs-target="#signupModal">Enroll</a>
                             </div>
                             <!-- <div class="carousel-caption">
                                     <h3>Service-3</h3>
@@ -134,8 +131,7 @@ ob_start();
     <div class="container-fluid pt-5 d-flex justify-content-center" id="categoryDropdownButton">
         <div class="row justify-content-center">
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Car"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Car" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #6D0E33;">directions_car</span>
                         <span style="margin-top: -2px; color: black">Car</span>
@@ -143,8 +139,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="House"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="House" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color:  #d4ac0d;">cottage</span>
                         <span style="margin-top: -2px; color: black">House</span>
@@ -153,8 +148,7 @@ ob_start();
             </div>
             <div class="col-6 col-md-2 text-center">
 
-                <a class="categoryLink" href="#" data-category="Hotel"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Hotel" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #283747;">bed</span>
                         <span style="margin-top: -2px; color: black">Hotel</span>
@@ -162,8 +156,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Restaurant"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Restaurant" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #0E6655;">restaurant_menu</span>
                         <span style="margin-top: -2px; color: black">Restaurant</span>
@@ -171,8 +164,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Hospital"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Hospital" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #5B2C6F;">local_hospital</span>
                         <span style="margin-top: -2px; color: black">Hospital</span>
@@ -180,8 +172,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Collage"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Collage" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #4E8A06;">school</span>
                         <span style="margin-top: -2px; color: black">Collage</span>
@@ -189,8 +180,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Astrology"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Astrology" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #DE3163;">star_half</span>
                         <span style="margin-top: -2px; color: black">Astrology</span>
@@ -198,8 +188,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Bakery"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Bakery" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #FF00FF;">cake</span>
                         <span style="margin-top: -2px; color: black">Bakery</span>
@@ -207,8 +196,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Bank"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Bank" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #808080;">account_balance</span>
                         <span style="margin-top: -2px; color: black">Bank</span>
@@ -216,8 +204,7 @@ ob_start();
                 </a>
             </div>
             <div class="col-6 col-md-2 text-center">
-                <a class="categoryLink" href="#" data-category="Computer"
-                    style="text-align: center; display: inline-block; text-decoration: none;">
+                <a class="categoryLink" href="#" data-category="Computer" style="text-align: center; display: inline-block; text-decoration: none;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <span class="material-icons" style="font-size: 68px; color: #E9967A;">computer</span>
                         <span style="margin-top: -2px; color: black">Computer</span>
@@ -233,8 +220,7 @@ ob_start();
         <div class="row container-fluid">
             <div class="col text-center">
                 <div class="d-flex justify-content-center flex-wrap">
-                    <div class="icon-box mb-5 mr-5 ml-5"
-                        style="display: flex; justify-content: center; align-items: center;">
+                    <div class="icon-box mb-5 mr-5 ml-5" style="display: flex; justify-content: center; align-items: center;">
                         <span class="material-icons" style="font-size: 78px; color: blue;">directions_car</span>
                     </div>
                     <div class="icon-box mb-5 mr-5">
@@ -327,8 +313,7 @@ ob_start();
 
     <!-- open signup modal -->
     <div class="container-fluid">
-        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -372,11 +357,7 @@ ob_start();
                                 <p class="mb-2">Mobile No.</p>
                                 <div>
 
-                                    <input type="text" id="mobile" class="form-control mb-3" placeholder="Mobile"
-                                        name="mobile"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);"
-                                        maxlength="10" pattern="[0-9]{10}"
-                                        title="Please enter 10 Digit Phone Number only" required>
+                                    <input type="text" id="mobile" class="form-control mb-3" placeholder="Mobile" name="mobile" oninput="this.value = this.value.replace(/[^0-9]/g, ''); if (this.value.length > 10) this.value = this.value.slice(0, 10);" maxlength="10" pattern="[0-9]{10}" title="Please enter 10 Digit Phone Number only" required>
                                     <small id="mobileAvailability" class="form-text"></small>
                                 </div>
                                 <!-- </div> -->
@@ -392,10 +373,8 @@ ob_start();
                                 <!-- <div class="col-md-6"> -->
                                 <div class="mb-3">
                                     <div class="d-flex">
-                                        <input type="text" id="referralCode" class="form-control"
-                                            placeholder="Refferal Code" name="refferalCode" required>
-                                        <button type="button" class="btn btn-primary btn-sm ml-2"
-                                            id="applyReferralCode">Apply</button>
+                                        <input type="text" id="referralCode" class="form-control" placeholder="Refferal Code" name="refferalCode" required>
+                                        <button type="button" class="btn btn-primary btn-sm ml-2" id="applyReferralCode">Apply</button>
                                         <!-- <div id="referralCodeStatus"></div> -->
                                     </div>
                                     <small id="referralCodeStatus" class="form-text"></small>
@@ -404,11 +383,9 @@ ob_start();
 
                                 <!-- <div class="col-md-6"> -->
                                 <div class="mb-3">
-                                    <input type="password" id="password" class="form-control" placeholder="Password"
-                                        name="password" required>
+                                    <input type="password" id="password" class="form-control" placeholder="Password" name="password" required>
                                     <div class="mb-3">
-                                        <input type="password" id="conf-password" class="form-control"
-                                            placeholder="Confirm-Password" name="conf-password" required>
+                                        <input type="password" id="conf-password" class="form-control" placeholder="Confirm-Password" name="conf-password" required>
                                         <!-- For password and confirm-password message -->
                                         <small id="password-match-message" class="form-text"></small>
                                     </div>
@@ -418,8 +395,7 @@ ob_start();
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="registerButton"
-                                name="register">Register</button>
+                            <button type="submit" class="btn btn-primary" id="registerButton" name="register">Register</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
                         </div>
@@ -433,8 +409,7 @@ ob_start();
 
 
     <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -446,10 +421,8 @@ ob_start();
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input type="text" id="loginMobile" class="form-control mb-3" placeholder="Mobile"
-                                    name="mobile" required>
-                                <input type="password" id="loginPassword" class="form-control" placeholder="Password"
-                                    name="password" required>
+                                <input type="text" id="loginMobile" class="form-control mb-3" placeholder="Mobile" name="mobile" required>
+                                <input type="password" id="loginPassword" class="form-control" placeholder="Password" name="password" required>
                             </div>
                         </div>
                     </div>
@@ -464,8 +437,7 @@ ob_start();
 
 
     <!-- admin Login Modal -->
-    <div class="modal fade" id="adminloginModal" tabindex="-1" role="dialog" aria-labelledby="adminloginModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="adminloginModal" tabindex="-1" role="dialog" aria-labelledby="adminloginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -477,10 +449,8 @@ ob_start();
                     <div class="modal-body">
                         <div class="form-group row">
                             <div class="col-md-12">
-                                <input type="text" id="admin_user_name" class="form-control mb-3"
-                                    placeholder="User Name" name="user_name" required>
-                                <input type="password" id="adminl_Password" class="form-control" placeholder="Password"
-                                    name="password" required>
+                                <input type="text" id="admin_user_name" class="form-control mb-3" placeholder="User Name" name="user_name" required>
+                                <input type="password" id="adminl_Password" class="form-control" placeholder="Password" name="password" required>
                             </div>
                         </div>
                     </div>
@@ -524,18 +494,18 @@ ob_start();
 
     <!-- Open login modal when link is clicked -->
     <script>
-        $(document).ready(function () {
-            $('#openAdminLogin').click(function () {
+        $(document).ready(function() {
+            $('#openAdminLogin').click(function() {
                 $('#adminloginModal').modal('show');
             });
 
 
 
             // to auto dissapear alert
-            $(document).ready(function () {
+            $(document).ready(function() {
 
-                window.setTimeout(function () {
-                    $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+                window.setTimeout(function() {
+                    $(".alert").fadeTo(1000, 0).slideUp(1000, function() {
                         $(this).remove();
                     });
                 }, 5000);
@@ -543,7 +513,7 @@ ob_start();
             });
 
             //  check password and confirm-password is matched  
-            $('#conf-password').keyup(function () {
+            $('#conf-password').keyup(function() {
                 var password = $('#password').val();
                 var confirmPassword = $('#conf-password').val();
 
@@ -559,7 +529,7 @@ ob_start();
             });
 
             // to check referral code is present in database or not
-            $('#applyReferralCode').click('input', function () {
+            $('#applyReferralCode').click('input', function() {
                 var referralCode = $('#referralCode').val();
                 // var referralCode = $(this).val();
 
@@ -571,7 +541,7 @@ ob_start();
                         checkType: 'referralCode',
                         value: referralCode
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response === 'valid') {
                             $('#referralCodeStatus').removeClass('text-danger').addClass(
                                 'text-success');
@@ -585,7 +555,7 @@ ob_start();
                 });
             });
 
-            $('#mobile').on('input', function () {
+            $('#mobile').on('input', function() {
                 var mobile = $(this).val();
 
                 // Perform AJAX check for mobile number
@@ -596,7 +566,7 @@ ob_start();
                         checkType: 'mobile',
                         value: mobile
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response === 'exist') {
                             $('#mobileAvailability').text('Mobile number already exists.');
                             $('#mobileAvailability').removeClass('text-success').addClass(
@@ -623,7 +593,7 @@ ob_start();
             $.ajax({
                 url: "php/fetch_pin_data.php",
                 dataType: "html",
-                success: function (data) {
+                success: function(data) {
                     $("#dropdownContent").html(data);
                 }
             });
@@ -631,7 +601,7 @@ ob_start();
             var selectedPin = ""; // Initialize variable for selected pincode
 
             // Handle pincode selection
-            $(document).on("click", ".dropdown-item", function (e) {
+            $(document).on("click", ".dropdown-item", function(e) {
                 e.preventDefault();
                 selectedPin = $(this).text();
                 $("#dropdownMenuButton").text(selectedPin);
@@ -639,22 +609,22 @@ ob_start();
             });
 
 
-            $("#searchInput").on("input", function () {
+            $("#searchInput").on("input", function() {
                 var searchValue = $(this).val().toLowerCase();
-                $(".dropdown-item").filter(function () {
+                $(".dropdown-item").filter(function() {
                     $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1);
                 });
             });
 
             // Handle category icon click to navigate to listing page
-            $(".categoryLink").click(function () {
+            $(".categoryLink").click(function() {
                 // e.preventDefault();
                 // var categoryLink = $(this).link();
 
                 var category = $(this).data("category");
                 if (selectedPin !== "") {
                     var sectedLink = window.location.href = "listingpage.php?pincode=" + encodeURIComponent(
-                        selectedPin) +
+                            selectedPin) +
                         "&category=" + encodeURIComponent(category);
                 } else {
                     var sectedLink = window.location.href = "listingpage.php?" +
@@ -673,36 +643,36 @@ ob_start();
 
         });
 
-    // // Add an event listener to the pincode dropdown
-    // const pincodeDropdown = document.getElementById('dropdownMenuButton');
-    // pincodeDropdown.addEventListener('change', function() {
-    //     const selectedPincode = this.value;
-    //     // Redirect to the listingpage.php page with the selected pincode as a query parameter
-    //     window.location.href = `listingpage.php?pincode=${selectedPincode}`;
-    // });
+        // // Add an event listener to the pincode dropdown
+        // const pincodeDropdown = document.getElementById('dropdownMenuButton');
+        // pincodeDropdown.addEventListener('change', function() {
+        //     const selectedPincode = this.value;
+        //     // Redirect to the listingpage.php page with the selected pincode as a query parameter
+        //     window.location.href = `listingpage.php?pincode=${selectedPincode}`;
+        // });
 
 
 
 
-    // Function to open the signup modal with the referral code
-    // function openSignupModalWithReferral() {
-    //     var modal = document.getElementById('signupModal');
+        // Function to open the signup modal with the referral code
+        // function openSignupModalWithReferral() {
+        //     var modal = document.getElementById('signupModal');
 
-    //     modal.style.display = "block";
-    // }
+        //     modal.style.display = "block";
+        // }
 
 
-    // $(document).ready(function() {
-    //     // Check if the 'refer' query parameter is present in the URL
-    //     const urlParams = new URLSearchParams(window.location.search);
-    //     const referralCode = urlParams.get('refer');
+        // $(document).ready(function() {
+        //     // Check if the 'refer' query parameter is present in the URL
+        //     const urlParams = new URLSearchParams(window.location.search);
+        //     const referralCode = urlParams.get('refer');
 
-    //     // If referralCode is present, open the modal and populate the referral code
-    //     if (referralCode) {
-    //         $('#signupModal').modal('show');
-    //         $('#referralCode').val(referralCode);
-    //     }
-    // });
+        //     // If referralCode is present, open the modal and populate the referral code
+        //     if (referralCode) {
+        //         $('#signupModal').modal('show');
+        //         $('#referralCode').val(referralCode);
+        //     }
+        // });
     </script>
 
 
@@ -713,7 +683,7 @@ ob_start();
     require_once 'db_conn.php';
 
     // Check if the user is not logged in and a referral code is provided
-    
+
     // Check if the user is logged in
     if (!isset($_SESSION['uId'])) {
         // Open the modal with referral code
@@ -728,7 +698,7 @@ ob_start();
 
                 // echo ($_GET['refer']);
                 // echo ($_SESSION['LOG_AUTH']);
-    
+
                 // If the referral code exists in the database, open the signup modal and populate the referral code
                 if ($result->num_rows == 1) {
                     echo '<script>
@@ -744,7 +714,7 @@ ob_start();
         }
     }
     ob_end_flush(); // End output buffering and send the captured output to the browser
-    
+
     ?>
 
     <?php

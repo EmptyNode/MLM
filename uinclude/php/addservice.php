@@ -45,19 +45,10 @@ if (isset($_POST['saveService'])) {
             $originalFileName = $_FILES['image']['name'];
             $uniqueFileName = generateUniqueFileName($originalFileName);
 
-            $targetPath = "../userUploads/" . $uniqueFileName; // Set the target path            
+            $targetPath = "../userUploads/service" . $uniqueFileName; // Set the target path            
 
 
-
-            if ($imageFileType === "jpeg" || $imageFileType === "jpg") {
-                $source = imagecreatefromjpeg($image);
-                imagejpeg($source, $targetPath, 60); // Compression quality of 60%
-            } elseif ($imageFileType === "png") {
-                $source = imagecreatefrompng($image);
-                imagepng($source, $targetPath, 6); // Compression level of 6 (0-9)
-            }
-
-            $imagetargetPath = 'MLM/AnkanDa/uinclude/userUploads/' . $targetPath;
+            $imagetargetPath = '../userUploads/service' . $targetPath;
 
 
 
@@ -77,7 +68,7 @@ if (isset($_POST['saveService'])) {
 
             if ($stmt) {
                 $stmt->bind_param("ssssssssi", $service, $location, $addr, $pincode, $mobile, $whatsapp, $email, $imagetargetPath, $user_id);
-                
+
 
                 if ($stmt->execute()) {
                     $_SESSION['status'] = "Service added successfully";
@@ -111,4 +102,3 @@ function generateUniqueFileName($originalFileName, $index = '')
     $originalFileNameWithoutExtension = pathinfo($originalFileName, PATHINFO_FILENAME); // Get the original filename without extension
     return $datetime . '_' . $randomString . '_' . $index . '_' . $originalFileNameWithoutExtension . '.' . $extension;
 }
-?>

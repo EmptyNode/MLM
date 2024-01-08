@@ -135,13 +135,22 @@ include('../uinclude/php/cal_profile_percentage.php');
                                 <!-- Payment Status: -->
 
                             </div>
+                            <?php 
+                                include("../db_conn.php");
+                                $set_query = "SELECT mf FROM settings";
+                                $set_res = mysqli_query($conn, $set_query);
+                                if ($set_res && mysqli_num_rows($set_res) > 0) {
+                                    $setrow = mysqli_fetch_assoc($set_res);
+                                    $mf = $setrow['mf'];
+                                }
+                            ?>
                             <div class="col-8">
                                 <?php if ($row['approval_status'] == 'completed'): ?>
                                     <span class="text-success">Payment Completed</span>
                                 <?php else: ?>
-                                    <button class="btn btn-success" id="paymentButton">Make Payment</button>
+                                    <button class="btn btn-success" id="paymentButton">Pay Rs. <?php echo $mf; ?></button>
                                 <?php endif; ?>
-                            </div>
+                        </div>
                         </div>
 
                             <?php

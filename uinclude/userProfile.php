@@ -129,26 +129,48 @@ include('../uinclude/php/cal_profile_percentage.php');
                             <div class="row mb-3">
                                 <div class="col-4 fw-bold">Verification Image:</div>
                                 <div class="col-8">
-                                    <a href="<?php echo $row['verification_img'] ?>">
-                                        <img src="<?php echo $row['verification_img'] ?>" alt="Verification Image"
-                                            width="100" height="100">
+                                    <a href="uinclude/<?php echo $row['verification_img'] ?>">
+                                    <?php
+                                            $imagePath ="uinclude/" .  $row['verification_img'];
+                                            
+                                            if (file_exists($imagePath)) {
+                                                echo '<img src="' . $imagePath . '" alt="Service Image" width="100">';
+                                            } else {
+                                                echo '<img src="/path/to/placeholder-image.jpg" alt="Placeholder Image" width="50">';
+                                            }
+                              ?>
                                     </a>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-4 fw-bold">Bank Image:</div>
                                 <div class="col-8">
-                                    <a href="<?php echo $row['bank_img'] ?>">
-                                        <img src="<?php echo $row['bank_img'] ?>" alt="Bank Image" width="100" height="100">
+                                    <a href="uinclude/<?php echo $row['bank_img'] ?>">
+                                    <?php
+                                            $imagePath ="uinclude/" .  $row['bank_img'];
+                                            
+                                            if (file_exists($imagePath)) {
+                                                echo '<img src="' . $imagePath . '" alt="Service Image" width="100">';
+                                            } else {
+                                                echo '<img src="/path/to/placeholder-image.jpg" alt="Placeholder Image" width="50">';
+                                            }
+                              ?>
                                     </a>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <div class="col-4 fw-bold">Profile Image:</div>
                                 <div class="col-8">
-                                    <a href="<?php echo $row['profile_img'] ?>">
-                                        <img src="<?php echo $row['profile_img'] ?>" alt="Profile Image" width="100"
-                                            height="100">
+                                    <a href="uinclude/<?php echo $row['profile_img'] ?>">
+                                    <?php
+                                            $imagePath ="uinclude/" .  $row['profile_img'];
+                                            
+                                            if (file_exists($imagePath)) {
+                                                echo '<img src="' . $imagePath . '" alt="Service Image" width="100">';
+                                            } else {
+                                                echo '<img src="/path/to/placeholder-image.jpg" alt="Placeholder Image" width="50">';
+                                            }
+                              ?>
                                     </a>
                                 </div>
                             </div>
